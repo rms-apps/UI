@@ -30,11 +30,11 @@
   "peerDependencies": {
     "expo": "*",
     "react": "*",
-    "react-native": "*",
-    "expo-notifications": "*"
+    "react-native": "*"
   },
   "dependencies": {
-    "react-native-google-mobile-ads": "^15.8.1"
+    "react-native-google-mobile-ads": "^15.8.1",
+    "expo-notifications": "*"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
