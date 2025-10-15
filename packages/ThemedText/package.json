@@ -1,0 +1,42 @@
+{
+  "name": "@rms-apps/ui-themed-text",
+  "version": "1.0.0",
+  "types": "dist/index.d.ts",
+  "description": "RMS-APPS/UI Themed Text",
+  "keywords": [],
+  "author": "Rishi Mishra",
+  "homepage": "https://github.com/rms-apps/UI/tree/main/packages/themed-text#readme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "type": "module",
+  "source": "src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rms-apps/UI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rms-apps/UI/issue"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint src --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  },
+  "dependencies": {
+    "@rms-apps/ui-utils": "workspace:*"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3"
+  }
+}

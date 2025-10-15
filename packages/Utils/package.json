@@ -1,0 +1,43 @@
+{
+  "name": "@rms-apps/ui-utils",
+  "version": "1.0.0",
+  "types": "dist/index.d.ts",
+  "description": "RMS-APPS/UI Basic Utilities",
+  "keywords": [],
+  "author": "Rishi Mishra",
+  "homepage": "https://github.com/rms-apps/UI/tree/main/packages/utils#readme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "type": "module",
+  "source": "src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rms-apps/UI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rms-apps/UI/issue"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint src --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*",
+    "expo-notifications": "*"
+  },
+  "dependencies": {
+    "react-native-google-mobile-ads": "^15.8.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3"
+  }
+}
