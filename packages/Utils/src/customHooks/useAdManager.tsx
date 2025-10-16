@@ -1,38 +1,39 @@
 import { useCallback, useRef, useState, useEffect } from 'react';
-import {
-  RewardedAd,
-  RewardedInterstitialAd,
-  AdEventType,
-  RewardedAdEventType,
-  TestIds,
-} from 'react-native-google-mobile-ads';
+import { Platform } from 'react-native';
 
 export type AdType = 'rewardedInterstitial' | 'rewarded';
+export type AdProps = { adType: AdType; adId: string };
 
-export type AdProps = {
-  adType: AdType;
-  adId: string;
+const getAdModule = () => {
+  if (Platform.OS === 'web') return null;
+  try {
+    // Only require when not web
+    return require('react-native-google-mobile-ads');
+  } catch {
+    return null;
+  }
 };
 
-const getAdUnitId = ({ adType, adId }: AdProps) => {
+const getAdUnitId = ({ adType, adId }: AdProps, TestIds?: any) => {
   switch (adType) {
     case 'rewarded':
-      return __DEV__ ? TestIds.REWARDED : adId;
+      return __DEV__ ? (TestIds?.REWARDED ?? adId) : adId;
     case 'rewardedInterstitial':
-      return __DEV__ ? TestIds.REWARDED_INTERSTITIAL : adId;
+      return __DEV__ ? (TestIds?.REWARDED_INTERSTITIAL ?? adId) : adId;
     default:
       throw new Error(`Ad type: ${adType} not supported`);
   }
 };
 
-const createAd = ({ adType, adId }: AdProps) => {
-  const adUnitId = getAdUnitId({ adType, adId });
+const createAd = ({ adType, adId }: AdProps, adModule: any) => {
+  if (!adModule) return null;
+  const adUnitId = getAdUnitId({ adType, adId }, adModule.TestIds);
 
   switch (adType) {
     case 'rewarded':
-      return RewardedAd.createForAdRequest(adUnitId);
+      return adModule.RewardedAd.createForAdRequest(adUnitId);
     case 'rewardedInterstitial':
-      return RewardedInterstitialAd.createForAdRequest(adUnitId);
+      return adModule.RewardedInterstitialAd.createForAdRequest(adUnitId);
     default:
       throw new Error(`Ad type: ${adType} not supported`);
   }
@@ -42,50 +43,52 @@ export const useAdManager = ({ adType, adId }: AdProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isAdLoaded, setIsAdLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const rewardedAdRef = useRef<RewardedInterstitialAd | RewardedAd | null>(
-    null,
-  );
+  const rewardedAdRef = useRef<any>(null);
   const rewardPromiseRef = useRef<{
     resolve: (value: boolean) => void;
     reject: (reason?: any) => void;
   } | null>(null);
 
+  const adModule = getAdModule();
+
   const reloadAd = useCallback(() => {
     if (!rewardedAdRef.current) return;
-
     setIsLoading(true);
     setIsAdLoaded(false);
     setError(null);
-
     if (rewardedAdRef.current.loaded) return;
     rewardedAdRef.current.load();
   }, [adType]);
 
   useEffect(() => {
+    if (!adModule) return;
     if (rewardedAdRef.current) return;
 
-    rewardedAdRef.current = createAd({ adType, adId });
+    rewardedAdRef.current = createAd({ adType, adId }, adModule);
 
     if (rewardedAdRef.current) {
       rewardedAdRef.current.addAdEventListener(
-        RewardedAdEventType.LOADED,
+        adModule.RewardedAdEventType.LOADED,
         () => {
           setIsLoading(false);
           setIsAdLoaded(true);
         },
       );
 
-      rewardedAdRef.current.addAdEventListener(AdEventType.CLOSED, () => {
-        setIsAdLoaded(false);
-        if (rewardPromiseRef.current) {
-          rewardPromiseRef.current.resolve(false);
-          rewardPromiseRef.current = null;
-        }
-        reloadAd();
-      });
+      rewardedAdRef.current.addAdEventListener(
+        adModule.AdEventType.CLOSED,
+        () => {
+          setIsAdLoaded(false);
+          if (rewardPromiseRef.current) {
+            rewardPromiseRef.current.resolve(false);
+            rewardPromiseRef.current = null;
+          }
+          reloadAd();
+        },
+      );
 
       rewardedAdRef.current.addAdEventListener(
-        RewardedAdEventType.EARNED_REWARD,
+        adModule.RewardedAdEventType.EARNED_REWARD,
         () => {
           if (rewardPromiseRef.current) {
             rewardPromiseRef.current.resolve(true);
@@ -94,28 +97,34 @@ export const useAdManager = ({ adType, adId }: AdProps) => {
         },
       );
 
-      rewardedAdRef.current.addAdEventListener(AdEventType.ERROR, (error) => {
-        console.error('Ad error:', error);
-        setIsLoading(false);
-        setIsAdLoaded(false);
-        setError('Failed to load ad');
-      });
+      rewardedAdRef.current.addAdEventListener(
+        adModule.AdEventType.ERROR,
+        (error: any) => {
+          console.error('Ad error:', error);
+          setIsLoading(false);
+          setIsAdLoaded(false);
+          setError('Failed to load ad');
+        },
+      );
     }
 
-    rewardedAdRef.current.load();
+    rewardedAdRef.current?.load?.();
 
     return () => {
       if (rewardedAdRef.current) {
-        rewardedAdRef.current.removeAllListeners();
+        rewardedAdRef.current.removeAllListeners?.();
         rewardedAdRef.current = null;
       }
     };
-  }, [adType]);
+  }, [adType, adModule]);
 
   const showAd = useCallback(async (): Promise<{
     success: boolean;
     message?: string;
   }> => {
+    if (!adModule) {
+      return { success: false, message: 'Ads not supported on web/Storybook.' };
+    }
     return new Promise((resolve, reject) => {
       if (error) {
         resolve({
@@ -155,14 +164,14 @@ export const useAdManager = ({ adType, adId }: AdProps) => {
               message: 'Failed to show ad',
             }),
         };
-        rewardedAdRef.current.show();
+        rewardedAdRef.current.show?.();
       } catch (error) {
         console.warn('Failed to show ad:', error);
         resolve({ success: false, message: 'Failed to show ad. Reloading Ad' });
         reloadAd();
       }
     });
-  }, [adType, isAdLoaded, error, reloadAd]);
+  }, [adType, isAdLoaded, error, reloadAd, adModule]);
 
   return {
     error,
