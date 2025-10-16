@@ -4,9 +4,9 @@
  * @param {string} componentName
  */
 export const createStorybookFile = (componentName) => `
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-native';
 
-import { ${componentName} } from './${componentName}';
+import { ${componentName} } from '@rms-apps/ui-${componentName}';
 
 const meta = {
   title: '${componentName}',

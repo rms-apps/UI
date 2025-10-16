@@ -21,8 +21,12 @@
   "bugs": {
     "url": "https://github.com/rms-apps/UI/issue"
   },
+  "publishConfig": {
+    "access": "restricted"
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && pnpm copy-assets",
+    "copy-assets": "mkdir -p dist/assets && cp -R src/assets/* dist/assets/",
     "lint": "eslint src --ext .ts,.tsx --fix",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist"
@@ -30,11 +34,12 @@
   "peerDependencies": {
     "expo": "*",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "expo-notifications": "*",
+    "react-native-google-mobile-ads": "*"
   },
   "dependencies": {
-    "react-native-google-mobile-ads": "^15.8.1",
-    "expo-notifications": "*"
+    "date-fns": "^4.1.0"
   },
   "devDependencies": {
     "eslint": "^8.57.0",

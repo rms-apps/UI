@@ -1,0 +1,16 @@
+// @ts-check
+
+export const createTsConfigJson = () => `
+{
+    compilerOptions: {
+      target: 'ES2019',
+      module: 'ESNext',
+      jsx: 'react-native',
+      moduleResolution: 'node',
+      strict: true,
+      esModuleInterop: true,
+      skipLibCheck: true,
+      types: ['react', 'react-native'],
+    },
+    include: ['src'],
+}`;

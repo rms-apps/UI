@@ -3,6 +3,19 @@ export const packageScope = '@rms-apps';
 export const packagePrefix = 'ui';
 
 /**
+ * Transforms snakeCased string into PascalCase string
+ *
+ * @param {string} str any string
+ * @returns {string}
+ */
+const pascalToKebab = (str) => {
+  return str
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
+    .toLowerCase();
+};
+
+/**
  * Function to create package.json
  *
  * @param {Object} option - Option object
@@ -10,11 +23,9 @@ export const packagePrefix = 'ui';
  */
 export function createPackageJson({ packageName }) {
   return {
-    name: `${packageScope}/${packagePrefix}-${packageName}`,
+    name: `${packageScope}/${packagePrefix}-${pascalToKebab(packageName)}`,
     version: '0.0.0',
-    description: `RMS-APPS/UI ${
-      packageName.charAt(0).toUpperCase() + packageName.toLowerCase().slice(1)
-    } Component`,
+    description: `rms-apps/ui-${pascalToKebab(packageName)} component`,
     keywords: [],
     author: 'Rishi Mishra',
     homepage: `https://github.com/rms-apps/ui/tree/main/packages/${packageName}#readme`,
@@ -27,13 +38,6 @@ export function createPackageJson({ packageName }) {
     directories: {
       lib: 'dist',
       test: '__tests__',
-    },
-    dependencies: {
-      classnames: '^2.3.2',
-      '@rms-apps/ui-utils': 'workspace:*',
-    },
-    peerDependencies: {
-      react: '^18.2.0',
     },
     repository: {
       type: 'git',
@@ -49,8 +53,20 @@ export function createPackageJson({ packageName }) {
       includePaths: ['./node_modules'],
     },
     scripts: {
-      build: 'node ../../scripts/build/build.mjs',
+      build: 'tsc -p tsconfig.build.json',
+      'copy-assets': 'mkdir -p dist/assets && cp -R src/assets/* dist/assets/',
+      lint: 'eslint src --ext .ts,.tsx --fix',
+      'type-check': 'tsc --noEmit',
+      clean: 'rm -rf dist',
     },
-    browserslist: '>0.1% in ID, not dead',
+    peerDependencies: {
+      expo: '*',
+      react: '*',
+      'react-native': '*',
+    },
+    devDependencies: {
+      eslint: '^8.57.0',
+      typescript: '^5.3.3',
+    },
   };
 }

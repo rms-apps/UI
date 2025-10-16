@@ -14,6 +14,8 @@ import {
 import { createStorybookFile } from './storybook-template.mjs';
 import { createComponentFile } from './component-template.mjs';
 import { createReadmeFile } from './readme-template.mjs';
+import { createTsConfigBuildJson } from './tsconfig-build-template.mjs';
+import { createTsConfigJson } from './tsconfig-template.mjs';
 
 const exec = util.promisify(childProcess.exec);
 const relativePath = './packages';
@@ -47,48 +49,54 @@ async function setupFolderStructureAndFiles(packageName) {
   // await exec(`rd /s /q ${path.join(pkgDir, 'lib')}`);
   // await exec(`del ${path.join(pkgDir, 'README.md')}`);
 
-  await exec(`mkdir  ${path.join(pkgDir, 'src')}`);
+  await exec(`mkdir -p ${path.join(pkgDir, 'src')}`);
 
   const componentName = snakeToPascalCase(packageName);
   const defaultReadmeFile = 'README.md';
-  const rootIndexFile = 'index.ts';
-  const defaultIndexFile = 'index.ts';
+  const defaultRootIndexFile = 'index.ts';
+  const defaultSrcIndexFile = 'index.ts';
   const defaultComponentFile = `${componentName}.tsx`;
-  const defaultScssFile = `${componentName}.module.scss`;
-  const defaultStorybookFile = `${componentName}.stories.tsx`;
+  const defaultTsConfigFile = `tsconfig.json`;
+  const defaultTsConfigBuildFile = `tsconfig.build.json`;
+  const defaultStorybookFile = `index.stories.tsx`;
 
   // package-name/index.ts
-  const rootIndexFileContent = `export * from './src';`;
+  const defaultRootIndexFileContent = `export * from './src';`;
   // package-name/src/index.ts
-  const defaultIndexFileContent = `  export * from './${componentName}';`;
+  const defaultSrcIndexFileContent = `  export * from './${componentName}';`;
 
-  const defaultScssFileContent = '.container { padding: 40px; }';
   const defaultReadmeFileContent = createReadmeFile(componentName);
   const defaultComponentFileContent = createComponentFile(componentName);
   const defaultStorybookFileContent = createStorybookFile(componentName);
+  const defaultTsConfigFileContent = createTsConfigJson();
+  const defaultTsConfigBuildFileContent = createTsConfigBuildJson();
 
-  await exec(
-    `echo ${rootIndexFileContent} > ${path.join(pkgDir, rootIndexFile)}`,
+  fs.writeFile(
+    path.join(pkgDir, defaultRootIndexFile),
+    defaultRootIndexFileContent,
   );
-  await exec(
-    `echo ${defaultScssFileContent} > ${path.join(
-      pkgDir,
-      'src',
-      defaultScssFile,
-    )}`,
-  );
-
   fs.writeFile(path.join(pkgDir, defaultReadmeFile), defaultReadmeFileContent);
   fs.writeFile(
-    path.join(pkgDir, 'src', defaultIndexFile),
-    defaultIndexFileContent,
+    path.join(pkgDir, defaultTsConfigFile),
+    defaultTsConfigFileContent,
+  );
+  fs.writeFile(
+    path.join(pkgDir, defaultTsConfigBuildFile),
+    defaultTsConfigBuildFileContent,
+  );
+  fs.writeFile(
+    path.join(pkgDir, 'src', defaultSrcIndexFile),
+    defaultSrcIndexFileContent,
   );
   fs.writeFile(
     path.join(pkgDir, 'src', defaultComponentFile),
     defaultComponentFileContent,
   );
-  fs.writeFile(
-    path.join(pkgDir, 'src', defaultStorybookFile),
+
+  const storybookDir = path.join('./apps/expo-native/stories', componentName);
+  await fs.mkdir(storybookDir, { recursive: true });
+  await fs.writeFile(
+    path.join(storybookDir, defaultStorybookFile),
     defaultStorybookFileContent,
   );
 }

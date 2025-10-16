@@ -2,18 +2,15 @@
   "name": "@rms-apps/ui",
   "private": true,
   "scripts": {
-    "clean": "rm -rf dist node_modules .expo",
+    "clean": "rm -rf dist node_modules .expo .turbo",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "storybook": "turbo run storybook --filter=apps/demo-app"
+    "create:component": "node scripts/scaffolds/component-starter-code.mjs"
   },
   "devDependencies": {
-    "@storybook/addon-ondevice-controls": "^9.1.4",
-    "@storybook/addon-ondevice-notes": "^9.1.4",
-    "@storybook/react-native": "^9.1.4",
     "@types/react": "~19.1.0",
     "@types/react-native": "^0.73.0",
     "changesets": "^1.0.2",
