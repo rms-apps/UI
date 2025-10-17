@@ -55,7 +55,7 @@ export function createPackageJson({ packageName }) {
     scripts: {
       build: 'tsc -p tsconfig.build.json',
       'copy-assets': 'mkdir -p dist/assets && cp -R src/assets/* dist/assets/',
-      lint: 'eslint src --ext .ts,.tsx --fix',
+      lint: 'eslint . --fix --cache',
       'type-check': 'tsc --noEmit',
       clean: 'rm -rf dist',
     },
@@ -65,8 +65,8 @@ export function createPackageJson({ packageName }) {
       'react-native': '*',
     },
     devDependencies: {
-      eslint: '^8.57.0',
-      typescript: '^5.3.3',
+      eslint: '9.37.0',
+      typescript: '5.9.2',
     },
   };
 }

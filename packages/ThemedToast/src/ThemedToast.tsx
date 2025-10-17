@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { ToastColors } from './ToastConfig';
 import { BaseToast, ErrorToast } from 'react-native-toast-message';
 
 const toastBaseStyle = {
@@ -10,15 +13,6 @@ const toastBaseStyle = {
   shadowOffset: { width: 0, height: 4 },
   elevation: 6,
   zIndex: 9999,
-};
-
-type ToastColors = {
-  TOAST_BACKGROUND: string;
-  TOAST_TITLE_ERROR?: string;
-  TOAST_TITLE_SUCCESS?: string;
-  TOAST_TITLE_INFO?: string;
-  TOAST_TITLE_WARNING?: string;
-  TOAST_SUBTITLE: string;
 };
 
 type ToastProps = {
@@ -34,7 +28,7 @@ export const ErrorToastComponent = ({ colors, ...props }: ToastProps) => {
       {...props}
       style={{
         ...toastBaseStyle,
-        borderLeftColor: '#FF4D4F',
+        borderLeftColor: TOAST_TITLE_ERROR,
         backgroundColor: TOAST_BACKGROUND,
       }}
       text1Style={{
@@ -55,7 +49,7 @@ export const SuccessToastComponent = ({ colors, ...props }: ToastProps) => {
       {...props}
       style={{
         ...toastBaseStyle,
-        borderLeftColor: '#52C41A',
+        borderLeftColor: TOAST_TITLE_SUCCESS,
         backgroundColor: TOAST_BACKGROUND,
       }}
       text1Style={{
@@ -76,7 +70,7 @@ export const InfoToastComponent = ({ colors, ...props }: ToastProps) => {
       {...props}
       style={{
         ...toastBaseStyle,
-        borderLeftColor: '#1890FF',
+        borderLeftColor: TOAST_TITLE_INFO,
         backgroundColor: TOAST_BACKGROUND,
       }}
       text1Style={{ color: TOAST_TITLE_INFO, fontSize: 16, fontWeight: '600' }}
@@ -93,11 +87,32 @@ export const WarningToastComponent = ({ colors, ...props }: ToastProps) => {
       {...props}
       style={{
         ...toastBaseStyle,
-        borderLeftColor: '#FAAD14',
+        borderLeftColor: TOAST_TITLE_WARNING,
         backgroundColor: TOAST_BACKGROUND,
       }}
       text1Style={{
         color: TOAST_TITLE_WARNING,
+        fontSize: 16,
+        fontWeight: '600',
+      }}
+      text2Style={{ color: TOAST_SUBTITLE, fontSize: 14 }}
+    />
+  );
+};
+
+export const CustomToastComponent = ({ colors, ...props }: ToastProps) => {
+  const { TOAST_BACKGROUND, TOAST_TITLE_CUSTOM, TOAST_SUBTITLE } = colors;
+
+  return (
+    <BaseToast
+      {...props}
+      style={{
+        ...toastBaseStyle,
+        borderLeftColor: TOAST_TITLE_CUSTOM,
+        backgroundColor: TOAST_BACKGROUND,
+      }}
+      text1Style={{
+        color: TOAST_TITLE_CUSTOM,
         fontSize: 16,
         fontWeight: '600',
       }}
