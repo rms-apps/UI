@@ -35,7 +35,7 @@ jobs:
       #   run: pnpm run remove-dist
 
       - name: Run type checks
-        run: pnpm turbo run check-types
+        run: npx turbo run check-types
 
       - name: Run lint
         run: pnpm turbo run lint
