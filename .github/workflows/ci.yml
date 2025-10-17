@@ -19,26 +19,20 @@ jobs:
         with:
           node-version: 18
 
-      - name: Enable Corepack & activate pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@9.1.0 --activate
-          echo "✅ pnpm version: $(pnpm -v)"
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.1.0 # Or use 'latest'
+          run_install: false # Don't install yet, we will run pnpm install later
 
-      - name: Get pnpm path
-        id: get-pnpm-path
-        run: |
-          echo "PNPM_PATH=$(which pnpm)" >> $GITHUB_ENV
+      - name: Verify pnpm version
+        run: pnpm --version
 
-      - name: Add pnpm to PATH
-        run: |
-          echo "$(dirname $PNPM_PATH)" >> $GITHUB_PATH
-          
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Clean dist folders
-        run: pnpm run remove-dist
+      # - name: Clean dist folders
+      #   run: pnpm run remove-dist
 
       - name: Run type checks
         run: pnpm turbo run check-types
