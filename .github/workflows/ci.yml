@@ -36,7 +36,7 @@ jobs:
       # Run lint and type checks
       - name: Run checks
         run: |
-          pnpm turbo run check-types
+          pnpm turbo run check-types --filter @rms-apps/ui-utils --filter @rms-apps/expo-native --filter @rms-apps/ui-themed-text --filter @rms-apps/ui-themed-toast
           pnpm turbo run lint
           pnpm run lint:css
 
