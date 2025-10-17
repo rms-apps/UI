@@ -46,12 +46,22 @@ export const toSentenceCase = (value: string = '') => {
   return trimmed[0].toUpperCase() + trimmed.slice(1).toLowerCase();
 };
 
-export const isValidHttpUrl = (str?: string | null): boolean => {
-  if (!str) return false;
+export const isValidProtocol = ({
+  url,
+  withErrorLog = false,
+}: {
+  url?: string | null;
+  withErrorLog?: boolean;
+}): boolean => {
+  if (!url) {
+    if (withErrorLog) console.error('No URL passed');
+    return false;
+  }
   try {
-    const url = new URL(str);
-    return url.protocol === 'http:' || url.protocol === 'https:';
-  } catch (_) {
+    const fullUrl = new URL(url);
+    return fullUrl.protocol === 'http:' || fullUrl.protocol === 'https:';
+  } catch (error) {
+    if (withErrorLog) console.error('Invalid URL:', error);
     return false;
   }
 };

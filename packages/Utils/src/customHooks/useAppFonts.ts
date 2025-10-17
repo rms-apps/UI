@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 import { useFonts } from 'expo-font';
 
 export const useAppFonts = () => {

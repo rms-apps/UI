@@ -1,6 +1,6 @@
 {
   "name": "@rms-apps/ui-utils",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "types": "dist/index.d.ts",
   "description": "RMS-APPS/UI Basic Utilities",
   "keywords": [],
@@ -27,14 +27,14 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json && pnpm copy-assets",
     "copy-assets": "mkdir -p dist/assets && cp -R src/assets/* dist/assets/",
-    "lint": "eslint src --ext .ts,.tsx --fix",
-    "type-check": "tsc --noEmit",
+    "lint": "eslint . --fix --cache",
+    "check-types": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
-    "expo": "*",
     "react": "*",
     "react-native": "*",
+    "expo-font": "*",
     "expo-notifications": "*",
     "react-native-google-mobile-ads": "*"
   },
@@ -42,7 +42,7 @@
     "date-fns": "^4.1.0"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
-    "typescript": "^5.3.3"
+    "eslint": "9.37.0",
+    "typescript": "5.9.2"
   }
 }

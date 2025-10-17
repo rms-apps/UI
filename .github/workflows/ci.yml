@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.1.0 # Or use 'latest'
+          run_install: false # Don't install yet, we will run pnpm install later
+
+      - name: Verify pnpm version
+        run: pnpm --version
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Clean dist folders
+        run: pnpm run remove-dist
+
+      - name: Run type checks
+        run: npx turbo run check-types
+
+      - name: Run lint
+        run: npx turbo run lint
+
+      - name: Build packages
+        run: npx turbo run build

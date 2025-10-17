@@ -42,20 +42,17 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "copy-assets": "mkdir -p dist/assets && cp -R src/assets/* dist/assets/",
-    "lint": "eslint src --ext .ts,.tsx --fix",
-    "type-check": "tsc --noEmit",
+    "lint": "eslint . --fix --cache",
+    "check-types": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
-    "expo": "*",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-toast-message": "2.3.3"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
-    "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "react-native-toast-message": "2.3.3"
+    "eslint": "9.37.0",
+    "typescript": "5.9.2"
   }
 }

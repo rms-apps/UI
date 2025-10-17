@@ -6,16 +6,17 @@ import fs from 'fs/promises';
 import { argv } from 'process';
 import path from 'path';
 
+import { createReadmeFile } from './readme-template.mjs';
+import { createEslintConfig } from './eslint-template.mjs';
+import { createTsConfigJson } from './tsconfig-template.mjs';
+import { createStorybookFile } from './storybook-template.mjs';
+import { createComponentFile } from './component-template.mjs';
+import { createTsConfigBuildJson } from './tsconfig-build-template.mjs';
 import {
   packageScope,
   packagePrefix,
   createPackageJson,
 } from './package.config.mjs';
-import { createStorybookFile } from './storybook-template.mjs';
-import { createComponentFile } from './component-template.mjs';
-import { createReadmeFile } from './readme-template.mjs';
-import { createTsConfigBuildJson } from './tsconfig-build-template.mjs';
-import { createTsConfigJson } from './tsconfig-template.mjs';
 
 const exec = util.promisify(childProcess.exec);
 const relativePath = './packages';
@@ -59,7 +60,7 @@ async function setupFolderStructureAndFiles(packageName) {
   const defaultTsConfigFile = `tsconfig.json`;
   const defaultTsConfigBuildFile = `tsconfig.build.json`;
   const defaultStorybookFile = `index.stories.tsx`;
-
+  const defaultEslintFile = `eslint.config.js`;
   // package-name/index.ts
   const defaultRootIndexFileContent = `export * from './src';`;
   // package-name/src/index.ts
@@ -70,12 +71,14 @@ async function setupFolderStructureAndFiles(packageName) {
   const defaultStorybookFileContent = createStorybookFile(componentName);
   const defaultTsConfigFileContent = createTsConfigJson();
   const defaultTsConfigBuildFileContent = createTsConfigBuildJson();
+  const defaultEslintFileContent = createEslintConfig();
 
   fs.writeFile(
     path.join(pkgDir, defaultRootIndexFile),
     defaultRootIndexFileContent,
   );
   fs.writeFile(path.join(pkgDir, defaultReadmeFile), defaultReadmeFileContent);
+  fs.writeFile(path.join(pkgDir, defaultEslintFile), defaultEslintFileContent);
   fs.writeFile(
     path.join(pkgDir, defaultTsConfigFile),
     defaultTsConfigFileContent,
