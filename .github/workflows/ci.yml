@@ -13,37 +13,32 @@ jobs:
 
     strategy:
       matrix:
-        # run both checks in parallel to speed up the CI
         run: ['pnpm run check-all', 'pnpm run build']
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 🟩 1. Setup Node first (important!)
+      # 1️⃣ Setup Node.js first
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'pnpm'
 
-      # 🟩 2. Setup pnpm using latest v4 action
+      # 2️⃣ Install pnpm (ensures binary is in PATH)
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.1.0
-          run_install: false
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+          pnpm -v
 
-      # 🟩 3. Install dependencies
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 🟩 4. Add pnpm to PATH (fix for Turbo subprocess path issue)
-      - name: Add pnpm to PATH
-        run: echo "$(pnpm root -g)/.bin" >> $GITHUB_PATH
-
-      # 🟩 5. Run your matrix jobs
+      # 4️⃣ Run your matrix job
       - name: Run ${{ matrix.run }}
         run: ${{ matrix.run }}
