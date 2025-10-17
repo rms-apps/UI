@@ -1,0 +1,35 @@
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Setup pnpm via Corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.1.0 --activate
+          echo "✅ pnpm version: $(pnpm -v)"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      # Run lint and type checks
+      - name: Run checks
+        run: |
+          pnpm turbo run check-types
+          pnpm turbo run lint
+          pnpm run lint:css
+
+      # Build
+      - name: Build
+        run: pnpm turbo run build
