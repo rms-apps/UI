@@ -15,9 +15,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@rms-apps/ui-utils": "workspace:*",
     "@rms-apps/ui-themed-text": "workspace:*",
-    "@rms-apps/ui-themed-toast": "workspace:*"
+    "@rms-apps/ui-themed-toast": "workspace:*",
+    "@rms-apps/ui-utils": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.28.4",
@@ -29,6 +29,7 @@
     "@storybook/addon-ondevice-controls": "^9.1.4",
     "@storybook/react-native": "^9.1.4",
     "@storybook/react-native-web-vite": "^9.1.10",
+    "@types/node": "^24.8.1",
     "@types/react": "~19.1.0",
     "babel-loader": "^8.4.1",
     "eslint": "^9.25.0",
