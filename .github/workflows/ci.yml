@@ -25,6 +25,10 @@ jobs:
           corepack prepare pnpm@9.1.0 --activate
           echo "✅ pnpm version: $(pnpm -v)"
 
+      # Remove cache
+      - name: Remove cache
+        run: pnpm run clean
+
       # Install dependencies
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
