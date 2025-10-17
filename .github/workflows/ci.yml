@@ -44,8 +44,8 @@ jobs:
 
       # Run lint
       - name: 📝 Lint
-        run: pnpm turbo run lint
+        run: pnpm run check-all
 
       # Run build
       - name: 🚀 Build
-        run: pnpm turbo run build
+        run: pnpm run build
