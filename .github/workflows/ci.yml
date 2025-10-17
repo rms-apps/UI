@@ -7,6 +7,7 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
+
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -17,25 +18,32 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v3
+      # 🟩 1. Setup Node first (important!)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'pnpm'
 
+      # 🟩 2. Setup pnpm using latest v4 action
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.1.0
+          run_install: false
+
+      # 🟩 3. Install dependencies
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ${{ matrix.run }}
+      # 🟩 4. Add pnpm to PATH (fix for Turbo subprocess path issue)
+      - name: Add pnpm to PATH
+        run: echo "$(pnpm root -g)/.bin" >> $GITHUB_PATH
+
+      # 🟩 5. Run your matrix jobs
+      - name: Run ${{ matrix.run }}
         run: ${{ matrix.run }}
