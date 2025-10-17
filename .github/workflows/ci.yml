@@ -23,7 +23,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'pnpm'
 
       # 2️⃣ Setup pnpm manually (fix for missing pnpm binary)
       - name: 🧩 Setup pnpm via Corepack
