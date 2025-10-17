@@ -2,6 +2,7 @@
   "name": "@rms-apps/ui",
   "private": true,
   "scripts": {
+    "remove-dist": "rm -rf ./packages/*/dist/",
     "clean": "rm -rf ./packages/*/dist/ ./packages/*/.turbo ./packages/*/node_modules node_modules .expo .turbo",
     "clean-wind": "for /d %i in (./packages/*/dist/) do rd /s /q '%i'",
     "lint:css": "stylelint \"**/*.scss\" --allow-empty-input",
@@ -9,7 +10,7 @@
     "lint": "turbo run lint",
     "check-all": "pnpm run check-types && pnpm run lint && pnpm run lint:css",
     "prepare": "is-ci || husky install",
-    "prebuild": "pnpm run clean && pnpm i && pnpm run check-all",
+    "prebuild": "pnpm run remove-dist",
     "build": "turbo run build",
     "build-wind": "pnpm run clean-wind && turbo run build",
     "chromatic": "chromatic --exit-zero-on-changes",

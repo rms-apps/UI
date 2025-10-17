@@ -10,28 +10,24 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    strategy:
-      matrix:
-        run: ['pnpm run check-all', 'pnpm run build']
-
     steps:
       - name: 🧾 Checkout
         uses: actions/checkout@v4
 
-      # 1️⃣ Setup Node.js first
+      # Setup Node.js
       - name: 🟩 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # 2️⃣ Setup pnpm manually (fix for missing pnpm binary)
+      # Setup pnpm via Corepack
       - name: 🧩 Setup pnpm via Corepack
         run: |
           corepack enable
           corepack prepare pnpm@9.1.0 --activate
           echo "✅ pnpm version: $(pnpm -v)"
 
-      # 3️⃣ Cache pnpm store for speed
+      # Cache pnpm store
       - name: 🗃️ Setup pnpm cache
         uses: actions/cache@v4
         with:
@@ -40,12 +36,16 @@ jobs:
           restore-keys: |
             pnpm-store-
 
-      # 4️⃣ Install dependencies
+      # Install dependencies
       - name: 📦 Install dependencies
         run: pnpm install --no-frozen-lockfile
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 5️⃣ Run lint/build checks
-      - name: 🚀 Run ${{ matrix.run }}
-        run: ${{ matrix.run }}
+      # Run lint
+      - name: 📝 Lint
+        run: pnpm turbo run lint
+
+      # Run build
+      - name: 🚀 Build
+        run: pnpm turbo run build
