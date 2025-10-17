@@ -17,19 +17,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'pnpm'
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.1.0 # Or use 'latest'
+          run_install: false # Don't install yet, we will run pnpm install later
+
+      - name: Verify pnpm version
+        run: pnpm --version
+        
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
         env:
