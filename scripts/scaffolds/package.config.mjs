@@ -56,7 +56,7 @@ export function createPackageJson({ packageName }) {
       build: 'tsc -p tsconfig.build.json',
       'copy-assets': 'mkdir -p dist/assets && cp -R src/assets/* dist/assets/',
       lint: 'eslint . --fix --cache',
-      'type-check': 'tsc --noEmit',
+      'check-types': 'tsc --noEmit',
       clean: 'rm -rf dist',
     },
     peerDependencies: {

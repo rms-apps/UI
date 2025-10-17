@@ -9,6 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
+    "check-types": "tsc --noEmit",
     "storybook-generate": "sb-rn-get-stories",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

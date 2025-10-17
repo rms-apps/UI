@@ -24,7 +24,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint . --fix --cache",
-    "type-check": "tsc --noEmit",
+    "check-types": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
