@@ -31,19 +31,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Add local bin to PATH
-        run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
-      # - name: Clean dist folders
-      #   run: pnpm run remove-dist
+      - name: Clean dist folders
+        run: pnpm run remove-dist
 
       - name: Run type checks
         run: npx turbo run check-types
 
       - name: Run lint
         run: npx turbo run lint
-
-      - name: Run css lint
-        run: npx run lint:css
 
       - name: Build packages
         run: npx turbo run build

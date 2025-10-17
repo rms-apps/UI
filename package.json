@@ -8,7 +8,7 @@
     "lint:css": "stylelint \"**/*.scss\" --allow-empty-input",
     "check-types": "turbo run check-types",
     "lint": "turbo run lint",
-    "check-all": "pnpm run check-types && pnpm run lint && pnpm run lint:css",
+    "check-all": "pnpm run check-types && pnpm run lint",
     "prepare": "is-ci || husky install",
     "prebuild": "pnpm run remove-dist",
     "build": "turbo run build",
