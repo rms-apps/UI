@@ -8,6 +8,7 @@
   "license": "ISC",
   "main": "dist/index.js",
   "type": "module",
+  "react-native": "src/index.ts",
   "source": "src/index.ts",
   "files": [
     "dist",
@@ -49,7 +50,9 @@
   "peerDependencies": {
     "expo": "*",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "nativewind": "*",
+    "react-native-css-interop": "*"
   },
   "dependencies": {
     "@rms-apps/ui-utils": "workspace:*",

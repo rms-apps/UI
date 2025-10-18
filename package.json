@@ -2,20 +2,20 @@
   "name": "@rms-apps/ui",
   "private": true,
   "scripts": {
-    "remove-dist": "rm -rf ./packages/*/dist/",
+    "remove-dist": "rm -rf ./packages/*/dist/ ./packages/*/.turbo ./.turbo",
     "clean": "rm -rf ./packages/*/dist/ ./packages/*/.turbo ./packages/*/node_modules node_modules .expo .turbo",
-    "clean-wind": "for /d %i in (./packages/*/dist/) do rd /s /q '%i'",
     "lint:css": "stylelint \"**/*.scss\" --allow-empty-input",
     "check-types": "turbo run check-types",
     "lint": "turbo run lint",
+    "lintpkg": "node scripts/dev/lint-pkg.js",
     "check-all": "pnpm run check-types && pnpm run lint",
     "prepare": "is-ci || husky install",
     "prebuild": "pnpm run remove-dist",
     "build": "turbo run build",
-    "build-wind": "pnpm run clean-wind && turbo run build",
     "chromatic": "chromatic --exit-zero-on-changes",
     "release": "pnpm run build && changeset publish",
-    "dev": "pnpm run build && cd apps/expo-native && pnpm start",
+    "clean:install": "pnpm run clean && pnpm install && pnpm run check-all && pnpm run build",
+    "dev": "cd apps/expo-native && pnpm start",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "create:component": "node scripts/scaffolds/component-starter-code.mjs"
   },
@@ -41,26 +41,18 @@
     "eslint-plugin-react-native": "5.0.0",
     "husky": "9.1.7",
     "is-ci": "4.1.0",
+    "nativewind": "^4.1.23",
     "prettier": "^3.6.2",
-    "turbo": "^2.5.8",
-    "typescript": "5.9.2",
     "stylelint": "^15.11.0",
-    "stylelint-config-standard-scss": "^11.0.0"
+    "stylelint-config-standard-scss": "^11.0.0",
+    "stylelint-config-tailwindcss": "1.0.0",
+    "tailwindcss": "^3.4.17",
+    "turbo": "^2.5.8",
+    "typescript": "5.9.2"
   },
   "packageManager": "pnpm@9.1.0",
   "engines": {
     "node": ">=18"
-  },
-  "peerDependenciesMeta": {
-    "expo": {
-      "optional": true
-    },
-    "react": {
-      "optional": true
-    },
-    "react-native": {
-      "optional": true
-    }
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
@@ -85,11 +77,14 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.4",
+    "react-native-css-interop": "0.2.1",
     "react-native-gesture-handler": "~2.28.0",
     "react-native-google-mobile-ads": "15.8.1",
     "react-native-reanimated": "~4.1.1",
-    "react-native-safe-area-context": "~5.6.0",
+    "react-native-safe-area-context": "~5.6.1",
     "react-native-screens": "~4.16.0",
+    "react-native-svg": "^15.14.0",
+    "react-native-svg-transformer": "1.5.1",
     "react-native-toast-message": "2.3.3",
     "react-native-web": "~0.21.0",
     "react-native-worklets": "0.5.1"

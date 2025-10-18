@@ -3,6 +3,5 @@
   "packages/**/*.{ts,tsx,js}": "eslint --fix --cache",
   "apps/**/*.{ts,tsx,md,mdx,css,scss}": "prettier --write",
   "packages/**/*.{ts,tsx,md,mdx,css,scss}": "prettier --write",
-  "**/*.{css,scss}": "stylelint --fix",
   "*.json": "prettier --write"
 }

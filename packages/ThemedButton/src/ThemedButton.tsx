@@ -67,35 +67,33 @@ export const ThemedButton = ({
       ]}
       {...otherProps}
     >
-      {/* <View
+      <View
         className={cn(
           'rounded-md',
           sizeClasses,
           (disabled || isLoading) && 'opacity-50',
           type === 'hollow' && 'border',
         )}
-        style={[
+        style={
           type === 'hollow'
             ? { borderColor: buttonColor, backgroundColor: 'transparent' }
-            : { backgroundColor: buttonColor },
-          // style,
-        ]}
-      > */}
-      {isLoading ? (
-        <ActivityIndicator size="small" color={textColor} />
-      ) : (
-        // <View className="flex-row justify-center items-center gap-2">
-        <View>
-          {leftIcon && leftIcon}
-          <ThemedText
-            {...themedTextProps}
-            style={[{ color: textColor }, themedTextProps?.style]}
-          >
-            {title}
-          </ThemedText>
-        </View>
-      )}
-      {/* </View> */}
+            : { backgroundColor: buttonColor }
+        }
+      >
+        {isLoading ? (
+          <ActivityIndicator size="small" color={textColor} />
+        ) : (
+          <View className="flex-row justify-center items-center gap-2">
+            {leftIcon && leftIcon}
+            <ThemedText
+              {...themedTextProps}
+              style={[{ color: textColor }, themedTextProps?.style]}
+            >
+              {title}
+            </ThemedText>
+          </View>
+        )}
+      </View>
     </Pressable>
   );
 };
