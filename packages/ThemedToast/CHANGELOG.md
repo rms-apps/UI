@@ -1,5 +1,13 @@
 # @rms-apps/ui-themed-toast
 
+## 1.0.1
+
+### Patch Changes
+
+- [#4](https://github.com/rms-apps/UI/pull/4)
+  [`2b701b6`](https://github.com/rms-apps/UI/commit/2b701b64f01b4e6f8918717b8cc9d14112696d81)
+  Thanks [@rms-apps](https://github.com/rms-apps)! - bumped version
+
 ## 1.0.0
 
 ### Major Changes
