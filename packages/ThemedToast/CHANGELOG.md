@@ -1,5 +1,14 @@
 # @rms-apps/ui-themed-toast
 
+## 1.1.0
+
+### Minor Changes
+
+- [#6](https://github.com/rms-apps/UI/pull/6)
+  [`fa7530c`](https://github.com/rms-apps/UI/commit/fa7530c146c9161861056d5846065d5f64e4414e)
+  Thanks [@rms-apps](https://github.com/rms-apps)! - Added themed button and
+  support tailwind for other packages
+
 ## 1.0.1
 
 ### Patch Changes
