@@ -9,5 +9,5 @@ export const createTsConfigBuildJson = () => `
         emitDeclarationOnly: false,
         lib: ['ES2019', 'DOM'],
     },
-    include: ['src'],
+    include: ['src', 'index.ts', '../../nativewind-env.d.ts']
 }`;

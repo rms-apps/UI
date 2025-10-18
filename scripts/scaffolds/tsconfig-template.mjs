@@ -6,5 +6,5 @@ export const createTsConfigJson = () => `
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src", "index.ts"]
+  "include": ["src", "index.ts", "../../nativewind-env.d.ts"]
 }`;

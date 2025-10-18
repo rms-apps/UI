@@ -8,7 +8,7 @@ export const packagePrefix = 'ui';
  * @param {string} str any string
  * @returns {string}
  */
-const pascalToKebab = (str) => {
+export const pascalToKebab = (str) => {
   return str
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
     .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
