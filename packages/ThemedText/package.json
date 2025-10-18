@@ -1,6 +1,6 @@
 {
   "name": "@rms-apps/ui-themed-text",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "types": "dist/index.d.ts",
   "description": "RMS-APPS/UI Themed Text",
   "keywords": [],
