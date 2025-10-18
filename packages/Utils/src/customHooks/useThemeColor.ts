@@ -1,36 +1,48 @@
-import { DEFAULT_COLORS } from '../constants/colors';
+// utils/hooks/useThemeColor.ts
 import { ColorName, Theme, THEME } from '../types';
+import { useThemeContext } from '../context/ThemedContext';
 
-export type ColorsShape = Record<string, string> & {
-  [key: string]: string;
-};
+/**
+ * Represents a complete color palette for all themes.
+ * Each theme (light/dark) maps to a set of named colors.
+ */
+export type ColorsMap = Record<Theme, Record<ColorName, string>>;
 
-type CustomColor = {
+/**
+ * Allows custom colors for light and dark themes.
+ */
+export type ThemeColorOverride = {
   light?: string;
   dark?: string;
 };
 
-type UseThemeColorOptions = {
+/**
+ * Parameters for retrieving a theme-aware color.
+ */
+export type UseThemeColorParams = {
+  name: ColorName;
   theme?: Theme;
-  colors?: Record<Theme, Record<ColorName, string>>;
+  customColor?: ThemeColorOverride;
+  palette?: Record<Theme, Record<ColorName, string>>;
 };
 
+/**
+ * Returns a color value for the given theme.
+ * If no theme/palette is provided, uses global context values.
+ */
 export const useThemeColor = ({
+  name,
   customColor,
-  options,
-  colorName,
-}: {
-  colorName: ColorName;
-  customColor?: CustomColor;
-  options?: UseThemeColorOptions;
-}): string => {
-  const { theme: propTheme, colors: propColors } = options || {};
+  theme: propTheme,
+  palette: propPalette,
+}: UseThemeColorParams): string => {
+  const { theme: ctxTheme, palette: ctxPalette } = useThemeContext();
 
-  const theme = propTheme || THEME.LIGHT;
-  const colors = propColors || DEFAULT_COLORS;
+  const theme = propTheme || ctxTheme || THEME.LIGHT;
+  const palette = propPalette || ctxPalette;
 
-  const colorFromProps = customColor?.[theme];
-  if (colorFromProps) return colorFromProps;
+  const overriddenColor = customColor?.[theme];
+  if (overriddenColor) return overriddenColor;
 
-  return colors[theme][colorName] || '#000000';
+  return palette[theme][name] || '#000000';
 };

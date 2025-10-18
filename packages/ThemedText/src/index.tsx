@@ -1,5 +1,5 @@
+import { useThemeColor } from '@rms-apps/ui-utils';
 import { Text, StyleSheet, TextProps } from 'react-native';
-import { useThemeColor, DEFAULT_COLORS } from '@rms-apps/ui-utils';
 
 export interface ThemedTextProps extends TextProps {
   weight?: 'bold' | 'semibold' | 'normal' | 'regular' | 'thin';
@@ -27,8 +27,8 @@ export const ThemedText = ({
   ...rest
 }: ThemedTextProps) => {
   const fontColor = useThemeColor({
+    name: `text_${variant}`,
     customColor: { light: lightColor, dark: darkColor },
-    colorName: `text_${variant}` as keyof typeof DEFAULT_COLORS.light,
   });
 
   return (
