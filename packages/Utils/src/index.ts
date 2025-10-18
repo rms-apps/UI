@@ -6,3 +6,4 @@ export * from './customHooks/useAppFonts';
 export * from './customHooks/useThemeColor';
 export * from './customHooks/useAdManager';
 export * from './customHooks/useNotificationSetup';
+export * from './context/ThemedContext';

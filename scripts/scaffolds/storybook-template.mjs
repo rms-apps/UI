@@ -1,12 +1,14 @@
 // @ts-check
 
+import { pascalToKebab } from './package.config.mjs';
+
 /**
  * @param {string} componentName
  */
 export const createStorybookFile = (componentName) => `
 import { Meta, StoryObj } from '@storybook/react-native';
 
-import { ${componentName} } from '@rms-apps/ui-${componentName}';
+import { ${componentName} } from '@rms-apps/ui-${pascalToKebab(componentName)}';
 
 const meta = {
   title: '${componentName}',

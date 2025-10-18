@@ -37,6 +37,7 @@ export default [
       // Your custom shared rules
       'no-console': 'warn',
       'no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
 
       'react/jsx-props-no-spreading': 0,
       'react/prop-types': 0,

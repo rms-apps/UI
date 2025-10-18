@@ -15,7 +15,7 @@
     "build-wind": "pnpm run clean-wind && turbo run build",
     "chromatic": "chromatic --exit-zero-on-changes",
     "release": "pnpm run build && changeset publish",
-    "dev": "cd apps/expo-native && pnpm start",
+    "dev": "pnpm run build && cd apps/expo-native && pnpm start",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "create:component": "node scripts/scaffolds/component-starter-code.mjs"
   },
