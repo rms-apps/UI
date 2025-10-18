@@ -1,6 +1,6 @@
 {
   "name": "@rms-apps/ui-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "types": "dist/index.d.ts",
   "description": "RMS-APPS/UI Basic Utilities",
   "keywords": [],
