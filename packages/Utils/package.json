@@ -34,7 +34,6 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "expo-font": "*",
     "expo-notifications": "*",
     "react-native-google-mobile-ads": "*"
   },
