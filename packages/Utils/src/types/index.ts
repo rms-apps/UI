@@ -13,3 +13,5 @@ export type PasswordRules = {
   minLowerCase: number;
   minSpecialChars: number;
 };
+
+export type LinearGradientColors = readonly [string, string, ...string[]];
