@@ -25,15 +25,15 @@ export const ThemedCheckbox = ({
   onPress,
   ...props
 }: ThemedCheckboxProps) => {
-  const THEMED_TEXT = useThemeColor({ name: 'themed_text' });
-  const THEMED_BACKGROUND = useThemeColor({ name: 'themed_background' });
+  const CHECKBOX_SELECTED = useThemeColor({ name: 'checkbox_selected' });
+  const CHECKBOX_BACKGROUND = useThemeColor({ name: 'checkbox_background' });
 
   const DISABLED_BG = useThemeColor({
-    name: 'disable_background',
+    name: 'checkbox_disabled_background',
     customColor: { dark: '#1E293B', light: '#F1F5F9' },
   });
   const DISABLED_BORDER = useThemeColor({
-    name: 'disable_background',
+    name: 'checkbox_disabled_border',
     customColor: { dark: '#334155', light: '#CBD5E1' },
   });
 
@@ -65,9 +65,9 @@ export const ThemedCheckbox = ({
             backgroundColor: disabled
               ? DISABLED_BG
               : isSelected
-                ? THEMED_BACKGROUND
+                ? CHECKBOX_BACKGROUND
                 : '#FFF',
-            borderColor: disabled ? DISABLED_BORDER : THEMED_TEXT,
+            borderColor: disabled ? DISABLED_BORDER : CHECKBOX_SELECTED,
             borderWidth: 1.5,
           },
           viewStyle,
@@ -77,7 +77,7 @@ export const ThemedCheckbox = ({
           <Ionicons
             name="checkmark"
             size={size * 0.6}
-            color={disabled ? DISABLED_BORDER : THEMED_TEXT}
+            color={disabled ? DISABLED_BORDER : CHECKBOX_SELECTED}
             style={{
               textAlign: 'center',
               textAlignVertical: 'center',
