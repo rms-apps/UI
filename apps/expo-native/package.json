@@ -15,6 +15,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@rms-apps/ui-themed-checkbox": "workspace:*",
     "@rms-apps/ui-themed-divider": "workspace:*",
     "@rms-apps/ui-themed-switch": "workspace:*",
     "@rms-apps/ui-themed-button": "workspace:*",

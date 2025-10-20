@@ -6,7 +6,7 @@ export const DEFAULT_COLORS: Record<Theme, Record<ColorName, string>> = {
     themed_text_error: '#f87171',
     themed_background: 'rgba(55, 119, 255, 0.15)',
 
-    text_primary: '#ECF1F5',
+    text_primary: '#0F172A',
     text_secondary: '#64748B',
     text_tertiary: '#94A3B8',
 

@@ -7,7 +7,6 @@
     "lint-css": "stylelint \"**/*.scss\" --allow-empty-input",
     "check-types": "turbo run check-types",
     "lint": "turbo run lint",
-    "lint-pkg": "node scripts/dev/lint-pkg.js",
     "check-all": "pnpm run check-types && pnpm run lint",
     "prepare": "is-ci || husky install",
     "prebuild": "pnpm run remove-dist",
@@ -17,7 +16,9 @@
     "clean-install": "pnpm run clean && pnpm install && pnpm run check-all && pnpm run build",
     "dev": "cd apps/expo-native && pnpm start",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "create-component": "node scripts/scaffolds/component-starter-code.mjs"
+    "create-component": "node scripts/scaffolds/component-starter-code.mjs",
+    "lint-pkg": "node scripts/dev/lint-pkg.js",
+    "build-pkg": "node scripts/dev/build-pkg.js"
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.5.1",

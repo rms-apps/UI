@@ -12,20 +12,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  render: (args: ThemedSwitchProps) => (
-    <View className="p-4 flex flex-col gap-4">
-      <Text className="font-bold">Default (Uncontrolled)</Text>
-      <ThemedSwitch {...args} />
-    </View>
-  ),
-  args: {
-    value: false,
-    disabled: false,
-    onValueChange: () => {},
-  },
-};
-
 const ControlledExampleComponent = (args: ThemedSwitchProps) => {
   const [isEnabled, setIsEnabled] = useState(true);
 
@@ -43,6 +29,49 @@ export const ControlledExample: Story = {
   args: {
     value: true,
     disabled: false,
+    onValueChange: () => {},
+  },
+};
+
+const ThemedSwitchComponent = (args: ThemedSwitchProps) => {
+  const sizes: ThemedSwitchProps['size'][] = ['small', 'medium', 'large'];
+  const [values, setValues] = useState(
+    sizes.reduce(
+      (acc, size) => ({ ...acc, [size as string]: true }),
+      {} as Record<string, boolean>,
+    ),
+  );
+
+  const toggle = (size: string) => {
+    setValues((prev) => ({ ...prev, [size]: !prev[size] }));
+  };
+
+  return (
+    <View className="p-4 flex flex-col gap-6">
+      <Text className="font-bold text-lg">Switch Sizes</Text>
+
+      {sizes.map((size) => (
+        <View
+          key={size}
+          className="flex flex-row items-center justify-between w-full"
+        >
+          <Text className="capitalize text-base">{size}</Text>
+          <ThemedSwitch
+            {...args}
+            size={size}
+            value={values[size as string]}
+            onValueChange={() => toggle(size as string)}
+          />
+        </View>
+      ))}
+    </View>
+  );
+};
+
+export const Sizes: Story = {
+  render: (args: ThemedSwitchProps) => <ThemedSwitchComponent {...args} />,
+  args: {
+    value: false,
     onValueChange: () => {},
   },
 };
