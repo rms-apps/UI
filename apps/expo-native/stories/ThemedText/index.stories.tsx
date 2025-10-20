@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-raw-text */
-
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { Meta, StoryObj } from '@storybook/react-native';
 import { ThemedText, ThemedTextProps } from '@rms-apps/ui-themed-text';
 
@@ -15,13 +14,14 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Sizes story
+// Font Sizes
 export const Sizes: Story = {
   render: (args: ThemedTextProps) => (
-    <View style={styles.container}>
-      <ThemedText size="h2" weight="bold" style={styles.heading}>
+    <View className="flex flex-col justify-center items-start p-5 space-y-2">
+      <ThemedText size="h2" weight="bold" className="mb-3">
         Font Sizes
       </ThemedText>
+
       {['h1', 'h2', 'h3', 'b1', 'b2', 'b3', 'sm'].map((size) => (
         <ThemedText key={size} {...args} size={size as ThemedTextProps['size']}>
           {`Size: ${size}`}
@@ -35,13 +35,14 @@ export const Sizes: Story = {
   },
 };
 
-// Weight story
+// Font Weights
 export const Weights: Story = {
   render: (args: ThemedTextProps) => (
-    <View style={styles.container}>
-      <ThemedText size="h2" weight="bold" style={styles.heading}>
+    <View className="flex flex-col justify-center items-start p-5 space-y-2">
+      <ThemedText size="h2" weight="bold" className="mb-3">
         Font Weights
       </ThemedText>
+
       {['bold', 'semibold', 'normal', 'regular', 'thin'].map((weight) => (
         <ThemedText
           key={weight}
@@ -59,13 +60,14 @@ export const Weights: Story = {
   },
 };
 
-// Variant story
+// Color Variants
 export const Variants: Story = {
   render: (args: ThemedTextProps) => (
-    <View style={styles.container}>
-      <ThemedText size="h2" weight="bold" style={styles.heading}>
+    <View className="flex flex-col justify-center items-start p-5 space-y-2">
+      <ThemedText size="h2" weight="bold" className="mb-3">
         Color Variants
       </ThemedText>
+
       {['primary', 'secondary', 'tertiary'].map((variant) => (
         <ThemedText
           key={variant}
@@ -82,15 +84,3 @@ export const Variants: Story = {
     weight: 'regular',
   },
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'flex-start',
-    gap: 8,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  heading: {
-    marginBottom: 12,
-  },
-});

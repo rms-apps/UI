@@ -49,9 +49,6 @@ export function createPackageJson({ packageName }) {
     publishConfig: {
       access: 'restricted',
     },
-    sass: {
-      includePaths: ['./node_modules'],
-    },
     scripts: {
       build: 'tsc -p tsconfig.build.json',
       'copy-assets': 'mkdir -p dist/assets && cp -R src/assets/* dist/assets/',
@@ -63,10 +60,15 @@ export function createPackageJson({ packageName }) {
       expo: '*',
       react: '*',
       'react-native': '*',
+      nativewind: '*',
+      'react-native-css-interop': '*',
     },
     devDependencies: {
       eslint: '9.37.0',
       typescript: '5.9.2',
+    },
+    dependencies: {
+      '@rms-apps/ui-utils': 'workspace:*',
     },
   };
 }

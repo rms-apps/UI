@@ -6,7 +6,7 @@ export const DEFAULT_COLORS: Record<Theme, Record<ColorName, string>> = {
     themed_text_error: '#f87171',
     themed_background: 'rgba(55, 119, 255, 0.15)',
 
-    text_primary: '#ECF1F5',
+    text_primary: '#0F172A',
     text_secondary: '#64748B',
     text_tertiary: '#94A3B8',
 
@@ -48,6 +48,13 @@ export const DEFAULT_COLORS: Record<Theme, Record<ColorName, string>> = {
     icon_default: '#94A3B8',
 
     divider: '#475569',
+
+    radio_selected: '#3777FF',
+    radio_disabled: '#CBD5E1',
+    checkbox_selected: '#3777FF',
+    checkbox_background: 'rgba(55, 119, 255, 0.15)',
+    checkbox_disabled_border: '#CBD5E1',
+    checkbox_disabled_background: '#F1F5F9',
   },
 
   dark: {
@@ -97,5 +104,12 @@ export const DEFAULT_COLORS: Record<Theme, Record<ColorName, string>> = {
     icon_default: '#A5B4CB',
 
     divider: '#2A3A50',
+
+    radio_selected: '#1DA193',
+    radio_disabled: '#334155',
+    checkbox_selected: '#1DA193',
+    checkbox_background: 'rgba(41, 227, 180, 0.15)',
+    checkbox_disabled_border: '#334155',
+    checkbox_disabled_background: '#1E293B',
   },
 };

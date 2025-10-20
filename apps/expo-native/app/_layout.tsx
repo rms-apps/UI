@@ -5,9 +5,7 @@ export default function RootLayout() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
-      <Stack.Protected guard={__DEV__}>
-        <Stack.Screen name="storybook" />
-      </Stack.Protected>
+      {__DEV__ && <Stack.Screen name="storybook" />}
     </Stack>
   );
 }

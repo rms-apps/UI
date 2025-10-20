@@ -25,7 +25,7 @@
     "access": "restricted"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && pnpm copy-assets",
+    "build": "tsc -p tsconfig.build.json",
     "copy-assets": "mkdir -p dist/assets && cp -R src/assets/* dist/assets/",
     "lint": "eslint . --fix --cache",
     "check-types": "tsc --noEmit",
@@ -34,7 +34,6 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "expo-font": "*",
     "expo-notifications": "*",
     "react-native-google-mobile-ads": "*"
   },
