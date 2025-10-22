@@ -13,19 +13,9 @@ const meta: Meta<typeof createToastConfig> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const colors = {
-  TOAST_BACKGROUND: '#fff',
-  TOAST_TITLE_ERROR: '#FF4D4F',
-  TOAST_TITLE_SUCCESS: '#52C41A',
-  TOAST_TITLE_INFO: '#1890FF',
-  TOAST_TITLE_WARNING: '#FAAD14',
-  TOAST_TITLE_CUSTOM: '#7014faff',
-  TOAST_SUBTITLE: '#888',
-};
-
 export const Default: Story = {
   render: () => {
-    const toastConfig = createToastConfig(colors);
+    const toastConfig = createToastConfig();
 
     const showToast = (type: ToastType, title: string, message: string) => {
       Toast.show({

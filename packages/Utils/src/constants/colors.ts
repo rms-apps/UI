@@ -55,6 +55,14 @@ export const DEFAULT_COLORS: Record<Theme, Record<ColorName, string>> = {
     checkbox_background: 'rgba(55, 119, 255, 0.15)',
     checkbox_disabled_border: '#CBD5E1',
     checkbox_disabled_background: '#F1F5F9',
+
+    toast_background: '#F9FAFB',
+    toast_title_info: '#1890FF',
+    toast_title_error: '#FF4D4F',
+    toast_title_warning: '#FAAD14',
+    toast_title_success: '#52C41A',
+    toast_title_custom: '#7014faff',
+    toast_subtitle: '#64748B',
   },
 
   dark: {
@@ -111,5 +119,13 @@ export const DEFAULT_COLORS: Record<Theme, Record<ColorName, string>> = {
     checkbox_background: 'rgba(41, 227, 180, 0.15)',
     checkbox_disabled_border: '#334155',
     checkbox_disabled_background: '#1E293B',
+
+    toast_background: '#1F1F1F',
+    toast_title_info: '#1890FF',
+    toast_title_error: '#FF4D4F',
+    toast_title_warning: '#FAAD14',
+    toast_title_success: '#52C41A',
+    toast_title_custom: '#7014faff',
+    toast_subtitle: '#A5B4CB',
   },
 };

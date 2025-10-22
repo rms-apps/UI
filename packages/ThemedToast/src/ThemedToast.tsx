@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ToastColors } from './ToastConfig';
+import { useThemeColor } from '@rms-apps/ui-utils';
 import { BaseToast, ErrorToast } from 'react-native-toast-message';
 
 const toastBaseStyle = {
@@ -16,12 +16,13 @@ const toastBaseStyle = {
 };
 
 type ToastProps = {
-  colors: ToastColors;
   [key: string]: any;
 };
 
-export const ErrorToastComponent = ({ colors, ...props }: ToastProps) => {
-  const { TOAST_BACKGROUND, TOAST_TITLE_ERROR, TOAST_SUBTITLE } = colors;
+export const ErrorToastComponent = ({ ...props }: ToastProps) => {
+  const TOAST_SUBTITLE = useThemeColor({ name: 'toast_subtitle' });
+  const TOAST_BACKGROUND = useThemeColor({ name: 'toast_background' });
+  const TOAST_TITLE_ERROR = useThemeColor({ name: 'toast_title_error' });
 
   return (
     <ErrorToast
@@ -41,8 +42,10 @@ export const ErrorToastComponent = ({ colors, ...props }: ToastProps) => {
   );
 };
 
-export const SuccessToastComponent = ({ colors, ...props }: ToastProps) => {
-  const { TOAST_BACKGROUND, TOAST_TITLE_SUCCESS, TOAST_SUBTITLE } = colors;
+export const SuccessToastComponent = ({ ...props }: ToastProps) => {
+  const TOAST_SUBTITLE = useThemeColor({ name: 'toast_subtitle' });
+  const TOAST_BACKGROUND = useThemeColor({ name: 'toast_background' });
+  const TOAST_TITLE_SUCCESS = useThemeColor({ name: 'toast_title_success' });
 
   return (
     <BaseToast
@@ -62,8 +65,10 @@ export const SuccessToastComponent = ({ colors, ...props }: ToastProps) => {
   );
 };
 
-export const InfoToastComponent = ({ colors, ...props }: ToastProps) => {
-  const { TOAST_BACKGROUND, TOAST_TITLE_INFO, TOAST_SUBTITLE } = colors;
+export const InfoToastComponent = ({ ...props }: ToastProps) => {
+  const TOAST_SUBTITLE = useThemeColor({ name: 'toast_subtitle' });
+  const TOAST_BACKGROUND = useThemeColor({ name: 'toast_background' });
+  const TOAST_TITLE_INFO = useThemeColor({ name: 'toast_title_info' });
 
   return (
     <BaseToast
@@ -79,8 +84,10 @@ export const InfoToastComponent = ({ colors, ...props }: ToastProps) => {
   );
 };
 
-export const WarningToastComponent = ({ colors, ...props }: ToastProps) => {
-  const { TOAST_BACKGROUND, TOAST_TITLE_WARNING, TOAST_SUBTITLE } = colors;
+export const WarningToastComponent = ({ ...props }: ToastProps) => {
+  const TOAST_SUBTITLE = useThemeColor({ name: 'toast_subtitle' });
+  const TOAST_BACKGROUND = useThemeColor({ name: 'toast_background' });
+  const TOAST_TITLE_WARNING = useThemeColor({ name: 'toast_title_warning' });
 
   return (
     <BaseToast
@@ -100,8 +107,10 @@ export const WarningToastComponent = ({ colors, ...props }: ToastProps) => {
   );
 };
 
-export const CustomToastComponent = ({ colors, ...props }: ToastProps) => {
-  const { TOAST_BACKGROUND, TOAST_TITLE_CUSTOM, TOAST_SUBTITLE } = colors;
+export const CustomToastComponent = ({ ...props }: ToastProps) => {
+  const TOAST_SUBTITLE = useThemeColor({ name: 'toast_subtitle' });
+  const TOAST_BACKGROUND = useThemeColor({ name: 'toast_background' });
+  const TOAST_TITLE_CUSTOM = useThemeColor({ name: 'toast_title_custom' });
 
   return (
     <BaseToast

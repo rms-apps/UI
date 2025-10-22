@@ -463,6 +463,9 @@ importers:
 
   packages/ThemedToast:
     dependencies:
+      '@rms-apps/ui-utils':
+        specifier: workspace:*
+        version: link:../Utils
       react:
         specifier: '*'
         version: 19.1.0
