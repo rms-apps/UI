@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 
 /** @type {import('tailwindcss').Config} */
+const path = require('path');
+
 module.exports = {
-  // NOTE: Update this to include the paths to all of your component files.
   content: [
     './App.tsx',
-    './app/**/*.{js,tsx,ts,jsx}',
-    './stories/**/*.{js,jsx,ts,tsx}',
-    '../../packages/**/*.{js,jsx,ts,tsx}',
+    './app/**/*.{js,ts,jsx,tsx}',
+    './stories/**/*.{js,ts,jsx,tsx}',
+    path.resolve(__dirname, '../../packages/*/src/**/*.{js,ts,jsx,tsx}'),
   ],
   presets: [require('nativewind/preset')],
-  theme: {
-    extend: {},
-  },
+  theme: { extend: {} },
   plugins: [],
 };

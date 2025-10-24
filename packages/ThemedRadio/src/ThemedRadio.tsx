@@ -57,14 +57,11 @@ export const ThemedRadio = ({
   return (
     <TouchableOpacity
       disabled={disabled}
-      className={cn(disabled && 'opacity-50', className)}
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        paddingVertical: 2,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
+      className={cn(
+        'flex flex-row py-2 items-center justify-between',
+        disabled && 'opacity-50',
+        className,
+      )}
       onPress={!disabled ? onPress : undefined}
     >
       {reverse && RadioCircle}
