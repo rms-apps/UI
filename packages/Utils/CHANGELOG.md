@@ -1,5 +1,13 @@
 # @rms-apps/ui-utils
 
+## 1.3.0
+
+### Minor Changes
+
+- [#10](https://github.com/rms-apps/UI/pull/10)
+  [`73cf194`](https://github.com/rms-apps/UI/commit/73cf194d2e72d0e172ff8f5d7c1867ccbc0c526f)
+  Thanks [@rms-apps](https://github.com/rms-apps)! - added modal and footer
+
 ## 1.2.0
 
 ### Minor Changes
