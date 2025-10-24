@@ -10,9 +10,9 @@ export const DEFAULT_COLORS: Record<Theme, Record<ColorName, string>> = {
     text_secondary: '#64748B',
     text_tertiary: '#94A3B8',
 
-    background_primary: '#1E1E2E',
-    background_secondary: '#1E293B',
-    background_tertiary: '#B2C4D4',
+    background_primary: '#FFFFFF',
+    background_secondary: '#F3F4F6',
+    background_tertiary: '#E0E0E0',
 
     text_input_caret: '#3777FF',
     text_input_border: '#64748B',
@@ -47,7 +47,7 @@ export const DEFAULT_COLORS: Record<Theme, Record<ColorName, string>> = {
     icon_active: '#3777FF',
     icon_default: '#94A3B8',
 
-    divider: '#475569',
+    divider: '#E0E0E0',
 
     radio_selected: '#3777FF',
     radio_disabled: '#CBD5E1',

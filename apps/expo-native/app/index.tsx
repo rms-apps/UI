@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { View, ActivityIndicator } from 'react-native';
 import { router } from 'expo-router';
+import { View, ActivityIndicator } from 'react-native';
 import { DEFAULT_COLORS, THEME, ThemeProvider } from '@rms-apps/ui-utils';
 
 import '../global.css';

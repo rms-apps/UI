@@ -102,6 +102,7 @@ export default [
       'apps/expo-native/.expo/**',
       'apps/expo-native/android/**',
       'apps/expo-native/ios/**',
+      'apps/expo-native/stories/**',
     ],
   },
 ];

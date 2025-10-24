@@ -33,6 +33,7 @@ export function createPackageJson({ packageName }) {
     main: 'dist/index.js',
     type: 'module',
     source: 'src/index.ts',
+    'react-native': 'src/index.ts',
     files: ['dist', 'src'],
     sideEffects: ['*.css', '*.jpg', '*.png', '*.webp', '*.mp4'],
     directories: {
