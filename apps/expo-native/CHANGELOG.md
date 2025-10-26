@@ -1,5 +1,28 @@
 # @rms-apps/expo-native
 
+## 1.6.0
+
+### Minor Changes
+
+- [`d516098`](https://github.com/rms-apps/UI/commit/d516098ea3e634f464a82bbdd090f281b047c315)
+  Thanks [@rms-apps](https://github.com/rms-apps)! - updated package
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d516098`](https://github.com/rms-apps/UI/commit/d516098ea3e634f464a82bbdd090f281b047c315)]:
+  - @rms-apps/ui-themed-checkbox@1.3.0
+  - @rms-apps/ui-themed-divider@1.3.0
+  - @rms-apps/ui-modal-wrapper@1.2.0
+  - @rms-apps/ui-themed-button@1.4.0
+  - @rms-apps/ui-themed-switch@1.3.0
+  - @rms-apps/ui-themed-radio@1.3.0
+  - @rms-apps/ui-themed-toast@1.5.0
+  - @rms-apps/ui-themed-text@1.5.0
+  - @rms-apps/ui-themed-view@1.3.0
+  - @rms-apps/ui-footer@1.2.0
+  - @rms-apps/ui-utils@1.5.0
+
 ## 1.5.0
 
 ### Minor Changes
