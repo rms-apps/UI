@@ -1,5 +1,18 @@
 # @rms-apps/ui-themed-text
 
+## 1.5.0
+
+### Minor Changes
+
+- [`d516098`](https://github.com/rms-apps/UI/commit/d516098ea3e634f464a82bbdd090f281b047c315)
+  Thanks [@rms-apps](https://github.com/rms-apps)! - updated package
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d516098`](https://github.com/rms-apps/UI/commit/d516098ea3e634f464a82bbdd090f281b047c315)]:
+  - @rms-apps/ui-utils@1.5.0
+
 ## 1.4.0
 
 ### Minor Changes
