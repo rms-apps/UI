@@ -1,74 +1,122 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-import {
-  StyleSheet,
-  TouchableOpacity,
-  ViewStyle,
-  NativeSyntheticEvent,
-} from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { useThemeColor } from '@rms-apps/ui-utils';
+import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import { ThemedText } from '@rms-apps/ui-themed-text';
-import { ThemedView } from '@rms-apps/ui-themed-view';
+import type { GestureResponderEvent } from 'react-native';
 import { ThemedDivider } from '@rms-apps/ui-themed-divider';
+import { ThemeColor, useThemeColor } from '@rms-apps/ui-utils';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 
 export type ModalWrapperVariant = 'modal' | 'bottomSheet';
 
-type ModalWrapperHeaderProps = {
-  title: string;
-  variant: ModalWrapperVariant;
+export type ModalWrapperHeaderProps = {
+  title?: string;
   withDivider?: boolean;
-  onClose?: (event: NativeSyntheticEvent<any>) => void;
+  variant?: ModalWrapperVariant;
+  iconColor?: ThemeColor;
+  handleColor?: ThemeColor;
+  onClose?: (e?: GestureResponderEvent) => void;
 };
 
-export const ModalWrapperHeader = ({
-  title,
-  withDivider = false,
+export const ModalWrapperHeader: React.FC<ModalWrapperHeaderProps> = ({
+  title = '',
+  variant = 'bottomSheet',
+  withDivider = true,
+  iconColor,
+  handleColor,
   onClose,
-}: ModalWrapperHeaderProps) => {
-  const THEMED_TEXT = useThemeColor({ name: 'themed_text' });
-  const THEMED_BACKGROUND = useThemeColor({ name: 'themed_background' });
+}) => {
+  const ICON_COLOR = useThemeColor({
+    name: 'modal_wrapper_header_close_icon',
+    customColor: { light: iconColor?.light, dark: iconColor?.dark },
+  });
+
+  const HANDLE_COLOR = useThemeColor({
+    name: 'modal_wrapper_header_handle',
+    customColor: { light: handleColor?.light, dark: handleColor?.dark },
+  });
 
   return (
-    <ThemedView style={[styles.container, withDivider && styles.withDivider]}>
-      <ThemedView style={styles.headerRow}>
-        <TouchableOpacity
-          style={[styles.backButton, { backgroundColor: THEMED_BACKGROUND }]}
-          onPress={onClose}
-        >
-          <AntDesign size={16} name="arrow-left" color={THEMED_TEXT} />
-        </TouchableOpacity>
+    <View
+      style={[
+        styles.container,
+        variant === 'bottomSheet' && {
+          borderTopLeftRadius: 16,
+          borderTopRightRadius: 16,
+        },
+      ]}
+    >
+      <View style={[styles.row, !withDivider && styles.headerMargin]}>
+        {/* Drag handle for bottom sheet variant */}
+        {variant === 'bottomSheet' && (
+          <View style={styles.handleContainer}>
+            <View style={[styles.handle, { backgroundColor: HANDLE_COLOR }]} />
+          </View>
+        )}
 
-        <ThemedText size="b1" weight="semibold">
-          {title}
-        </ThemedText>
-      </ThemedView>
+        <View style={styles.headerRow}>
+          <ThemedText
+            numberOfLines={1}
+            style={styles.title}
+            size="b1"
+            weight="semibold"
+          >
+            {title}
+          </ThemedText>
+
+          {onClose && (
+            <TouchableOpacity
+              onPress={onClose}
+              style={[styles.iconButton, { backgroundColor: HANDLE_COLOR }]}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            >
+              <Ionicons name="close" size={18} color={ICON_COLOR} />
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
 
       {withDivider && <ThemedDivider style={styles.divider} />}
-    </ThemedView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  backButton: {
-    alignItems: 'center',
-    borderRadius: 8,
-    justifyContent: 'center',
-    padding: 8,
-  },
   container: {
-    flexDirection: 'column',
+    backgroundColor: 'transparent',
+    paddingTop: 8,
   },
   divider: {
-    marginVertical: 16,
+    marginBottom: 12,
+    marginTop: 12,
   },
-  headerRow: {
-    flexDirection: 'row',
+  handle: {
+    borderRadius: 2,
+    height: 4,
+    width: 36,
+  },
+  handleContainer: {
     alignItems: 'center',
+    marginBottom: 8,
+    width: '100%',
+  },
+  headerMargin: { marginBottom: 12 },
+  headerRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  iconButton: {
+    borderRadius: 8,
+    padding: 6,
+  },
+  row: {
+    alignItems: 'center',
+    flexDirection: 'column',
     paddingHorizontal: 16,
-    columnGap: 16, // for RN >= 0.76, use gap properties
-  } as ViewStyle,
-  withDivider: {
-    paddingTop: 16,
+  },
+  title: {
+    flex: 1,
+    fontSize: 17,
   },
 });

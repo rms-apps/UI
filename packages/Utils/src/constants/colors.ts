@@ -63,6 +63,9 @@ export const DEFAULT_COLORS: Record<Theme, Record<ColorName, string>> = {
     toast_title_success: '#52C41A',
     toast_title_custom: '#7014faff',
     toast_subtitle: '#64748B',
+
+    modal_wrapper_header_handle: '#C1C7CE',
+    modal_wrapper_header_close_icon: '#41484D',
   },
 
   dark: {
@@ -127,5 +130,8 @@ export const DEFAULT_COLORS: Record<Theme, Record<ColorName, string>> = {
     toast_title_success: '#52C41A',
     toast_title_custom: '#7014faff',
     toast_subtitle: '#A5B4CB',
+
+    modal_wrapper_header_handle: '#41484D',
+    modal_wrapper_header_close_icon: '#C1C7CE',
   },
 };

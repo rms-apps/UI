@@ -6,17 +6,30 @@ import { ThemedText } from '@rms-apps/ui-themed-text';
 import { LinearGradient as ExpoLinearGradient } from 'expo-linear-gradient';
 import Svg, { Path, Defs, LinearGradient, Stop, G } from 'react-native-svg';
 
-export type FooterProps = {
-  bottomTabBarHeight: number;
+type InlineFooterProps = {
+  inline: true;
+  bottomOffset?: never;
+  bottomTabBarHeight?: never;
+};
+
+type AbsoluteFooterProps = {
+  inline?: false;
   bottomOffset?: number;
+  bottomTabBarHeight: number;
+};
+
+export type FooterProps = (InlineFooterProps | AbsoluteFooterProps) & {
   copyrightText?: string;
   craftedWithText?: string;
   allRightReservedText?: string;
 };
 
+export const FOOTER_HEIGHT = 260;
+
 export const Footer = ({
-  bottomTabBarHeight,
+  inline = false,
   bottomOffset = 10,
+  bottomTabBarHeight = 80,
   allRightReservedText = '',
   copyrightText = 'Copyright © 2025 RM Apps',
   craftedWithText = 'Crafted with ✨ in UP, India',
@@ -36,13 +49,14 @@ export const Footer = ({
       style={{
         left: 0,
         right: 0,
-        height: 260,
+        // if inline, we still provide the wave height as regular height
+        height: FOOTER_HEIGHT,
         overflow: 'hidden',
-        position: 'absolute',
-        bottom: bottomTabBarHeight + bottomOffset,
+        position: inline ? 'relative' : 'absolute',
+        bottom: inline ? undefined : bottomTabBarHeight + bottomOffset,
       }}
     >
-      <Svg height="260" width="100%" viewBox="0 0 1440 320">
+      <Svg height={FOOTER_HEIGHT} width="100%" viewBox="0 0 1440 320">
         <Defs>
           <LinearGradient id="footerGradient" x1="0" y1="0" x2="1" y2="1">
             <Stop offset="0" stopColor={footerFirstWaveColor} stopOpacity="1" />
@@ -92,11 +106,10 @@ export const Footer = ({
       </Svg>
 
       <View
-        className="flex flex-col gap-[1px]"
         style={{
-          bottom: 100,
           left: 0,
           right: 0,
+          bottom: 100, // keeps same spacing as before
           position: 'absolute',
           alignItems: 'center',
         }}
@@ -121,11 +134,11 @@ export const Footer = ({
           {copyrightText}
         </ThemedText>
 
-        {allRightReservedText && (
+        {allRightReservedText ? (
           <ThemedText size="b3" className="text-white mt-1">
             {allRightReservedText}
           </ThemedText>
-        )}
+        ) : null}
 
         <ThemedText size="b3" className="text-white mt-1" weight="semibold">
           Rishi Mishra

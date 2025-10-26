@@ -47,6 +47,7 @@
     "react": "*",
     "react-native": "*",
     "nativewind": "*",
+    "react-native-modal": "*",
     "react-native-css-interop": "*",
     "react-native-safe-area-context": "*"
   },
