@@ -1,12 +1,18 @@
 import { useEffect } from 'react';
-import { router } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { View, ActivityIndicator } from 'react-native';
 import { DEFAULT_COLORS, THEME, ThemeProvider } from '@rms-apps/ui-utils';
 
 import '../global.css';
 
 export default function Index() {
+  const router = useRouter();
+
+  const isReady = true;
+
   useEffect(() => {
+    if (!isReady) return;
+
     if (__DEV__) {
       // Small delay to ensure layout fully mounts before redirect
       const timeout = setTimeout(() => {
@@ -14,13 +20,22 @@ export default function Index() {
       }, 100);
       return () => clearTimeout(timeout);
     }
-  }, []);
+  }, [isReady]);
 
-  return (
-    <ThemeProvider theme={THEME.DARK} palette={DEFAULT_COLORS}>
-      <View className="flex flex-1 justify-center items-center bg-white">
-        <ActivityIndicator size="large" color="#60A5FA" />
+  if (!isReady) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#FFF',
+        }}
+      >
+        <ActivityIndicator size="large" />
       </View>
-    </ThemeProvider>
-  );
+    );
+  }
+
+  return null;
 }

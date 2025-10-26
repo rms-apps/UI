@@ -1,20 +1,18 @@
-// utils/hooks/useThemeColor.ts
-import { ColorName, Theme, THEME } from '../types';
 import { useThemeContext } from '../context/ThemedContext';
+import {
+  ColorName,
+  Theme,
+  THEME,
+  ColorValue,
+  ThemeColor,
+  ThemePalette,
+} from '../types';
 
 /**
  * Represents a complete color palette for all themes.
  * Each theme (light/dark) maps to a set of named colors.
  */
-export type ColorsMap = Record<Theme, Record<ColorName, string>>;
-
-/**
- * Allows custom colors for light and dark themes.
- */
-export type ThemeColorOverride = {
-  light?: string;
-  dark?: string;
-};
+export type ColorsMap = Record<Theme, Record<ColorName, ColorValue>>;
 
 /**
  * Parameters for retrieving a theme-aware color.
@@ -22,8 +20,8 @@ export type ThemeColorOverride = {
 export type UseThemeColorParams = {
   name: ColorName;
   theme?: Theme;
-  customColor?: ThemeColorOverride;
-  palette?: Record<Theme, Record<ColorName, string>>;
+  customColor?: ThemeColor;
+  palette?: ThemePalette;
 };
 
 /**

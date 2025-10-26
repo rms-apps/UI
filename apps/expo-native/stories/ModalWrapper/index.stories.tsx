@@ -4,11 +4,19 @@ import { ThemedText } from '@rms-apps/ui-themed-text';
 import { Meta, StoryObj } from '@storybook/react-native';
 import { ModalWrapper } from '@rms-apps/ui-modal-wrapper';
 import { ThemedButton } from '@rms-apps/ui-themed-button';
+import { THEME, ThemeProvider, DEFAULT_COLORS } from '@rms-apps/ui-utils';
 
 const meta = {
   title: 'Components/ModalWrapper',
   component: ModalWrapper,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <ThemeProvider theme={THEME.DARK} palette={DEFAULT_COLORS}>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
 } satisfies Meta<typeof ModalWrapper>;
 
 export default meta;
@@ -39,8 +47,7 @@ export const bottomSheet: Story = {
         <ModalWrapper
           {...args}
           title={title}
-          visible={visible}
-          animationType="slide"
+          isVisible={visible}
           onRequestClose={() => setVisible(false)}
         >
           <View className="p-4 items-center gap-2">
@@ -54,6 +61,7 @@ export const bottomSheet: Story = {
     );
   },
   args: {
+    isVisible: true,
     variant: 'bottomSheet',
     children: null,
   },
@@ -84,8 +92,7 @@ export const Modal: Story = {
         <ModalWrapper
           {...args}
           title={title}
-          visible={visible}
-          animationType="slide"
+          isVisible={visible}
           onRequestClose={() => setVisible(false)}
         >
           <View className="p-4 items-center gap-2">
@@ -99,6 +106,7 @@ export const Modal: Story = {
     );
   },
   args: {
+    isVisible: true,
     variant: 'modal',
     children: null,
   },
