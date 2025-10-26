@@ -5,7 +5,7 @@ import { Meta, StoryObj } from '@storybook/react-native';
 import { ThemedText, ThemedTextProps } from '@rms-apps/ui-themed-text';
 
 const meta: Meta<typeof ThemedText> = {
-  title: 'ThemedText',
+  title: 'Themed/Text',
   component: ThemedText,
   tags: ['autodocs'],
 };

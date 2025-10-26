@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react-native';
 import { ThemedSwitch, ThemedSwitchProps } from '@rms-apps/ui-themed-switch';
 
 const meta = {
-  title: 'ThemedSwitch',
+  title: 'Themed/Switch',
   component: ThemedSwitch,
   tags: ['autodocs'],
 } satisfies Meta<typeof ThemedSwitch>;

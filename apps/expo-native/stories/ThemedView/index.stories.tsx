@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react-native';
 import { ThemedView, ThemedViewProps } from '@rms-apps/ui-themed-view';
 
 const meta: Meta<typeof ThemedView> = {
-  title: 'ThemedView',
+  title: 'Themed/View',
   component: ThemedView,
   tags: ['autodocs'],
 };

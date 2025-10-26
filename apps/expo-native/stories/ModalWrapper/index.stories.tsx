@@ -12,7 +12,7 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <ThemeProvider theme={THEME.DARK} palette={DEFAULT_COLORS}>
+      <ThemeProvider theme={THEME.LIGHT} palette={DEFAULT_COLORS}>
         <Story />
       </ThemeProvider>
     ),

@@ -7,7 +7,7 @@ import {
 } from '@rms-apps/ui-themed-checkbox';
 
 const meta: Meta<typeof ThemedCheckbox> = {
-  title: 'ThemedCheckbox',
+  title: 'Themed/Checkbox',
   component: ThemedCheckbox,
   tags: ['autodocs'],
 };

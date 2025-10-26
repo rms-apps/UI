@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react-native';
 import { ThemedDivider, DividerProps } from '@rms-apps/ui-themed-divider';
 
 const meta = {
-  title: 'ThemedDivider',
+  title: 'Themed/Divider',
   component: ThemedDivider,
   tags: ['autodocs'],
 } satisfies Meta<typeof ThemedDivider>;

@@ -114,7 +114,7 @@ export const Footer = ({
           alignItems: 'center',
         }}
       >
-        <ThemedText size="b2" className="text-white font-semibold">
+        <ThemedText size="b2" weight="semibold">
           {craftedWithText}
         </ThemedText>
 
@@ -130,17 +130,17 @@ export const Footer = ({
           }}
         />
 
-        <ThemedText size="b3" className="text-white mt-1">
+        <ThemedText size="b3" className="mt-1">
           {copyrightText}
         </ThemedText>
 
         {allRightReservedText ? (
-          <ThemedText size="b3" className="text-white mt-1">
+          <ThemedText size="b3" className="mt-1">
             {allRightReservedText}
           </ThemedText>
         ) : null}
 
-        <ThemedText size="b3" className="text-white mt-1" weight="semibold">
+        <ThemedText size="b3" className="mt-1" weight="semibold">
           Rishi Mishra
         </ThemedText>
       </View>

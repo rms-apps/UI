@@ -5,7 +5,7 @@ import { View, Button, Text, StyleSheet } from 'react-native';
 import { createToastConfig, ToastType } from '@rms-apps/ui-themed-toast';
 
 const meta: Meta<typeof createToastConfig> = {
-  title: 'ThemedToast',
+  title: 'Themed/Toast',
   component: Toast,
   tags: ['autodocs'],
 };

@@ -8,7 +8,7 @@ import { ThemedRadio, ThemedRadioProps } from '@rms-apps/ui-themed-radio';
 import { ThemedText } from '@rms-apps/ui-themed-text';
 
 const meta: Meta<typeof ThemedRadio> = {
-  title: 'ThemedRadio',
+  title: 'Themed/Radio',
   component: ThemedRadio,
   tags: ['autodocs'],
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import RNModal from 'react-native-modal';
 import Toast from 'react-native-toast-message';
-import { useThemeColor } from '@rms-apps/ui-utils';
 import { ThemedView } from '@rms-apps/ui-themed-view';
 import { createToastConfig } from '@rms-apps/ui-themed-toast';
+import { useThemeColor, ThemeColor } from '@rms-apps/ui-utils';
 import { ScrollView, StyleSheet, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ModalWrapperHeader, ModalWrapperVariant } from '../ModalWrapperHeader';
@@ -19,7 +19,6 @@ export type ModalWrapperProps = {
   /** extra offset from bottom (used for bottomSheet) */
   bottomOffset?: number;
   title?: string;
-  backgroundColor?: { light: string; dark: string };
   onRequestClose?: () => void;
 };
 
@@ -31,17 +30,12 @@ export const ModalWrapper: React.FC<ModalWrapperProps> = ({
   variant = 'bottomSheet',
   bottomOffset = 0,
   title,
-  backgroundColor,
   onRequestClose,
 }) => {
   const insets = useSafeAreaInsets();
   const isBottomSheet = variant === 'bottomSheet';
   const toastConfig =
     typeof createToastConfig === 'function' ? createToastConfig() : undefined;
-  const background = useThemeColor({
-    name: 'background_primary',
-    customColor: { dark: backgroundColor?.dark, light: backgroundColor?.light },
-  });
 
   return (
     <>
@@ -63,7 +57,6 @@ export const ModalWrapper: React.FC<ModalWrapperProps> = ({
             styles.innerContainer,
             isBottomSheet ? styles.bottomSheet : styles.centerModal,
             {
-              backgroundColor: background,
               paddingBottom: bottomOffset + insets.bottom,
             },
           ]}

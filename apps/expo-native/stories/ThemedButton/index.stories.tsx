@@ -3,7 +3,7 @@ import { Text, View, ScrollView, Alert } from 'react-native';
 import { ThemedButton, ThemedButtonProps } from '@rms-apps/ui-themed-button';
 
 const meta = {
-  title: 'ThemedButton',
+  title: 'Themed/Button',
   component: ThemedButton,
   tags: ['autodocs'],
 } satisfies Meta<typeof ThemedButton>;

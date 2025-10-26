@@ -1,15 +1,16 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import { Meta, StoryObj } from '@storybook/react-native';
 import { Footer, FooterProps } from '@rms-apps/ui-footer';
 import { THEME, DEFAULT_COLORS, ThemeProvider } from '@rms-apps/ui-utils';
+import { ThemedView } from '@rms-apps/ui-themed-view';
+import { ThemedText } from '@rms-apps/ui-themed-text';
 
 const meta: Meta<FooterProps> = {
   title: 'Components/Footer',
   component: Footer,
   decorators: [
     (Story) => (
-      <ThemeProvider theme={THEME.DARK} palette={DEFAULT_COLORS}>
+      <ThemeProvider theme={THEME.LIGHT} palette={DEFAULT_COLORS}>
         <Story />
       </ThemeProvider>
     ),
@@ -22,10 +23,9 @@ type Story = StoryObj<FooterProps>;
 
 export const Default: Story = {
   render: (args: FooterProps) => (
-    <View style={{ flex: 1, backgroundColor: '#0A0A0A', paddingTop: 60 }}>
-      <Text
+    <ThemedView style={{ flex: 1, paddingTop: 60 }}>
+      <ThemedText
         style={{
-          color: 'white',
           textAlign: 'center',
           marginBottom: 16,
           fontWeight: '600',
@@ -33,9 +33,9 @@ export const Default: Story = {
         }}
       >
         Footer Preview
-      </Text>
+      </ThemedText>
       <Footer {...args} />
-    </View>
+    </ThemedView>
   ),
   args: {
     bottomOffset: 10,
