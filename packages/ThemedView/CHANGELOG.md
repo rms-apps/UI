@@ -1,5 +1,19 @@
 # @rms-apps/ui-themed-view
 
+## 1.2.0
+
+### Minor Changes
+
+- [#12](https://github.com/rms-apps/UI/pull/12)
+  [`45be4cd`](https://github.com/rms-apps/UI/commit/45be4cdc8192c424e977bb67e302ba825e128d7b)
+  Thanks [@rms-apps](https://github.com/rms-apps)! - updated the packages
+
+### Patch Changes
+
+- Updated dependencies
+  [[`45be4cd`](https://github.com/rms-apps/UI/commit/45be4cdc8192c424e977bb67e302ba825e128d7b)]:
+  - @rms-apps/ui-utils@1.4.0
+
 ## 1.1.0
 
 ### Minor Changes
