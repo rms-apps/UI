@@ -18,7 +18,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "create-component": "node scripts/scaffolds/component-starter-code.mjs",
     "lint-pkg": "node scripts/dev/lint-pkg.js",
-    "build-pkg": "node scripts/dev/build-pkg.js"
+    "build-pkg": "node scripts/dev/build-pkg.js",
+    "delete-all": "git branch | grep -v 'develop' | xargs git branch -D"
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.5.1",
