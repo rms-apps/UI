@@ -1,5 +1,28 @@
 # @rms-apps/ui-modal-wrapper
 
+## 1.4.0
+
+### Minor Changes
+
+- [#16](https://github.com/rms-apps/UI/pull/16)
+  [`c4ff1af`](https://github.com/rms-apps/UI/commit/c4ff1af3b5bee8e08da99d250d1d61258515c93f)
+  Thanks [@rms-apps](https://github.com/rms-apps)! - updated themed view
+
+- [#18](https://github.com/rms-apps/UI/pull/18)
+  [`f789e92`](https://github.com/rms-apps/UI/commit/f789e92ba3863c1fc065e50c3c37a9765cbe4b97)
+  Thanks [@rms-apps](https://github.com/rms-apps)! - updated
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c4ff1af`](https://github.com/rms-apps/UI/commit/c4ff1af3b5bee8e08da99d250d1d61258515c93f),
+  [`f789e92`](https://github.com/rms-apps/UI/commit/f789e92ba3863c1fc065e50c3c37a9765cbe4b97)]:
+  - @rms-apps/ui-themed-divider@1.5.0
+  - @rms-apps/ui-themed-toast@1.7.0
+  - @rms-apps/ui-themed-text@1.7.0
+  - @rms-apps/ui-themed-view@1.5.0
+  - @rms-apps/ui-utils@1.7.0
+
 ## 1.3.0
 
 ### Minor Changes
