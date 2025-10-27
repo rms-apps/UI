@@ -1,22 +1,24 @@
 import React from 'react';
-import RNModal from 'react-native-modal';
+import {
+  Modal,
+  View,
+  TouchableWithoutFeedback,
+  StyleSheet,
+  ScrollView,
+  Platform,
+} from 'react-native';
 import Toast from 'react-native-toast-message';
 import { ThemedView } from '@rms-apps/ui-themed-view';
 import { createToastConfig } from '@rms-apps/ui-themed-toast';
-import { useThemeColor, ThemeColor } from '@rms-apps/ui-utils';
-import { ScrollView, StyleSheet, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ModalWrapperHeader, ModalWrapperVariant } from '../ModalWrapperHeader';
 
 export type ModalWrapperProps = {
   children: React.ReactNode;
   isVisible: boolean;
-  /** show a tappable backdrop that closes modal on press */
   withTouchableBackdrop?: boolean;
   toastPosition?: 'top' | 'bottom';
-  /** 'modal' or 'bottomSheet' */
   variant?: ModalWrapperVariant;
-  /** extra offset from bottom (used for bottomSheet) */
   bottomOffset?: number;
   title?: string;
   onRequestClose?: () => void;
@@ -25,9 +27,9 @@ export type ModalWrapperProps = {
 export const ModalWrapper: React.FC<ModalWrapperProps> = ({
   children,
   isVisible,
-  withTouchableBackdrop = true,
   toastPosition = 'top',
   variant = 'bottomSheet',
+  withTouchableBackdrop = true,
   bottomOffset = 0,
   title,
   onRequestClose,
@@ -39,78 +41,93 @@ export const ModalWrapper: React.FC<ModalWrapperProps> = ({
 
   return (
     <>
-      <RNModal
-        isVisible={isVisible}
-        useNativeDriver={true}
-        hideModalContentWhileAnimating={true}
-        backdropOpacity={0.45}
-        animationIn={isBottomSheet ? 'slideInUp' : 'fadeIn'}
-        animationOut={isBottomSheet ? 'slideOutDown' : 'fadeOut'}
-        style={styles.modalContainer}
-        statusBarTranslucent={true}
-        propagateSwipe={true} // allow inner scrolls
-        onBackButtonPress={onRequestClose}
-        onBackdropPress={withTouchableBackdrop ? onRequestClose : undefined}
+      <Modal
+        visible={isVisible}
+        transparent
+        animationType={isBottomSheet ? 'slide' : 'fade'}
+        statusBarTranslucent
+        onRequestClose={onRequestClose}
       >
-        <ThemedView
-          style={[
-            styles.innerContainer,
-            isBottomSheet ? styles.bottomSheet : styles.centerModal,
-            {
-              paddingBottom: bottomOffset + insets.bottom,
-            },
-          ]}
-        >
-          {/* Header pinned outside ScrollView so it doesn't scroll away */}
-          {title ? (
-            <ModalWrapperHeader
-              title={title}
-              variant={variant}
-              onClose={onRequestClose}
-            />
-          ) : null}
-
-          {/* Scrollable content area */}
-          <ScrollView
-            contentContainerStyle={[
-              styles.scrollContent,
-              // if header exists, keep top padding small, otherwise full height
-              title ? { paddingTop: 8 } : {},
-            ]}
-            showsVerticalScrollIndicator={false}
-            bounces={false}
+        <View style={styles.fullscreenOverlay}>
+          {/* Backdrop */}
+          <TouchableWithoutFeedback
+            onPress={withTouchableBackdrop ? onRequestClose : undefined}
           >
-            {children}
-          </ScrollView>
-        </ThemedView>
-      </RNModal>
+            <View style={styles.backdrop} />
+          </TouchableWithoutFeedback>
 
-      {/* Toast (optional) */}
+          {/* Modal Content */}
+          <View
+            style={[
+              styles.modalWrapper,
+              isBottomSheet
+                ? { justifyContent: 'flex-end' }
+                : { justifyContent: 'center' },
+            ]}
+          >
+            <ThemedView
+              style={[
+                styles.innerContainer,
+                isBottomSheet
+                  ? styles.bottomSheetRadius
+                  : styles.centerModalRadius,
+                { paddingBottom: bottomOffset + insets.bottom },
+              ]}
+            >
+              {title ? (
+                <ModalWrapperHeader
+                  title={title}
+                  variant={variant}
+                  onClose={onRequestClose}
+                />
+              ) : null}
+
+              <ScrollView
+                contentContainerStyle={[
+                  styles.scrollContent,
+                  title ? { paddingTop: 8 } : {},
+                ]}
+                showsVerticalScrollIndicator={false}
+                bounces={false}
+              >
+                {children}
+              </ScrollView>
+            </ThemedView>
+          </View>
+        </View>
+      </Modal>
+
       <Toast config={toastConfig} position={toastPosition} />
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  bottomSheet: {
-    // pinned to bottom (RNModal container already aligns bottom)
-    marginTop: 'auto',
+  backdrop: {
+    backgroundColor: 'rgba(0,0,0,0.45)',
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
   },
-  centerModal: {
-    alignSelf: 'center',
-    borderRadius: 14,
-    // make it centered vertically
-    marginTop: 'auto',
-    marginBottom: 'auto',
-    width: '90%',
-  },
-  innerContainer: {
-    alignSelf: 'center',
+  bottomSheetRadius: {
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
+    width: '100%',
+  },
+  centerModalRadius: {
+    alignSelf: 'center',
+    borderRadius: 16,
+    width: '90%',
+  },
+  fullscreenOverlay: {
+    backgroundColor: 'transparent',
+    flex: 1,
+  },
+  innerContainer: {
     maxHeight: '90%',
     overflow: 'hidden',
-    width: '100%',
     ...Platform.select({
       android: { elevation: 8 },
       ios: {
@@ -121,9 +138,8 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  modalContainer: {
-    justifyContent: 'flex-end',
-    margin: 0,
+  modalWrapper: {
+    flex: 1,
   },
   scrollContent: {
     paddingBottom: 0,
