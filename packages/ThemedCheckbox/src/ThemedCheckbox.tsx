@@ -46,9 +46,9 @@ export const ThemedCheckbox = ({
       {...props}
     >
       <View className="flex flex-col">
-        <ThemedText align="flex-start">{label}</ThemedText>
+        <ThemedText align="left">{label}</ThemedText>
         {labelInfo && (
-          <ThemedText size="b3" variant="secondary" align="flex-start">
+          <ThemedText size="b3" variant="secondary" align="left">
             {labelInfo}
           </ThemedText>
         )}
