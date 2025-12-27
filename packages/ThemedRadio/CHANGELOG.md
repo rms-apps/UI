@@ -1,5 +1,13 @@
 # @rms-apps/ui-themed-radio
 
+## 1.5.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`dc5421e`](https://github.com/rms-apps/UI/commit/dc5421ea13719372093c7e40febf635043617f43)]:
+  - @rms-apps/ui-themed-text@1.8.0
+
 ## 1.5.0
 
 ### Minor Changes

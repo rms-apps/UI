@@ -1,5 +1,18 @@
 # @rms-apps/expo-native
 
+## 1.8.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`dc5421e`](https://github.com/rms-apps/UI/commit/dc5421ea13719372093c7e40febf635043617f43)]:
+  - @rms-apps/ui-themed-text@1.8.0
+  - @rms-apps/ui-footer@1.4.1
+  - @rms-apps/ui-modal-wrapper@1.4.1
+  - @rms-apps/ui-themed-button@1.6.1
+  - @rms-apps/ui-themed-checkbox@1.5.1
+  - @rms-apps/ui-themed-radio@1.5.1
+
 ## 1.8.0
 
 ### Minor Changes

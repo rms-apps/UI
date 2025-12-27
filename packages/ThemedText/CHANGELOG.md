@@ -1,5 +1,13 @@
 # @rms-apps/ui-themed-text
 
+## 1.8.0
+
+### Minor Changes
+
+- [#20](https://github.com/rms-apps/UI/pull/20)
+  [`dc5421e`](https://github.com/rms-apps/UI/commit/dc5421ea13719372093c7e40febf635043617f43)
+  Thanks [@rms-apps](https://github.com/rms-apps)! - updated themed text
+
 ## 1.7.0
 
 ### Minor Changes
