@@ -1,13 +1,13 @@
-import { Text, StyleSheet, TextProps, Platform } from 'react-native';
 import { useThemeColor } from '@rms-apps/ui-utils';
+import { Text, StyleSheet, TextProps, Platform } from 'react-native';
 
 export interface ThemedTextProps extends TextProps {
-  weight?: 'bold' | 'semibold' | 'normal' | 'regular' | 'thin';
+  darkColor?: string;
+  lightColor?: string;
+  align?: 'left' | 'center' | 'right';
   variant?: 'primary' | 'secondary' | 'tertiary';
   size?: 'h1' | 'h2' | 'h3' | 'b1' | 'b2' | 'b3' | 'sm';
-  lightColor?: string;
-  darkColor?: string;
-  align?: 'left' | 'center' | 'right';
+  weight?: 'bold' | 'semibold' | 'normal' | 'regular' | 'thin';
 }
 
 export const ThemedText = ({
