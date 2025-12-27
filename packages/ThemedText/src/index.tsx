@@ -1,5 +1,5 @@
+import { Text, StyleSheet, TextProps, Platform } from 'react-native';
 import { useThemeColor } from '@rms-apps/ui-utils';
-import { Text, StyleSheet, TextProps } from 'react-native';
 
 export interface ThemedTextProps extends TextProps {
   weight?: 'bold' | 'semibold' | 'normal' | 'regular' | 'thin';
@@ -7,18 +7,12 @@ export interface ThemedTextProps extends TextProps {
   size?: 'h1' | 'h2' | 'h3' | 'b1' | 'b2' | 'b3' | 'sm';
   lightColor?: string;
   darkColor?: string;
-  align?:
-    | 'stretch'
-    | 'auto'
-    | 'baseline'
-    | 'center'
-    | 'flex-start'
-    | 'flex-end';
+  align?: 'left' | 'center' | 'right';
 }
 
 export const ThemedText = ({
   size = 'b2',
-  align = 'center',
+  align = 'left',
   weight = 'regular',
   variant = 'primary',
   darkColor,
@@ -33,29 +27,39 @@ export const ThemedText = ({
 
   return (
     <Text
+      {...rest}
       style={[
+        styles.base,
         styles[size],
         styles[weight],
-        { color: fontColor, alignSelf: align },
+        { color: fontColor, textAlign: align },
         style,
       ]}
-      {...rest}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  b1: { fontSize: 16, lineHeight: 22 },
-  b2: { fontSize: 14, lineHeight: 20 },
-  b3: { fontSize: 12, lineHeight: 16 },
+  b1: { fontSize: 16, lineHeight: 24 },
+
+  b2: { fontSize: 14, lineHeight: 22 },
+  b3: { fontSize: 12, lineHeight: 18 },
+  base: {
+    paddingVertical: 2,
+    ...(Platform.OS === 'android' && {
+      includeFontPadding: false,
+    }),
+  },
+
   bold: { fontWeight: '700' },
-  h1: { fontSize: 36, lineHeight: 40 },
-  h2: { fontSize: 22, lineHeight: 28 },
-  h3: { fontSize: 18, lineHeight: 24 },
+  h1: { fontSize: 36, lineHeight: 52 },
+  h2: { fontSize: 22, lineHeight: 32 },
+
+  h3: { fontSize: 18, lineHeight: 26 },
+
   normal: { fontWeight: '500' },
   regular: { fontWeight: '400' },
   semibold: { fontWeight: '600' },
-  sm: { fontSize: 10, lineHeight: 14 },
-
+  sm: { fontSize: 10, lineHeight: 16 },
   thin: { fontWeight: '300' },
 });
